@@ -1,0 +1,10 @@
+<div class="add-new-note"> 
+  Take a note...
+</div>
+<note-view></note-view>
+<div class="note-container">
+  <app-note 
+    *ngFor="let note of noteList"
+    [item]="note">
+  </app-note>
+</div>
