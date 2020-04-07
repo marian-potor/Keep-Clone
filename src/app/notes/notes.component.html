@@ -1,10 +1,16 @@
-<div class="add-new-note"> 
-  Take a note...
-</div>
-<note-view></note-view>
-<div class="note-container">
-  <app-note 
-    *ngFor="let note of noteList"
-    [item]="note">
-  </app-note>
+<div (click)="closeNoteWiew()">
+  <div class="add-new-note" [style.display]="newNoteTrigger" (click)="startNewNote()"> 
+    Take a note...
+  </div>
+  <note-view *ngIf="newNoteTrigger === 'none'" [detail]="noteList[2]" (update)="updateNote($event)"></note-view>
+  <div class="note-container">
+    <app-note 
+      *ngFor="let note of noteList"
+      [item]="note"
+      (edit)="onEditNote(note)">
+    </app-note>
+  </div>
+  <div *ngIf="editNote" class="modal">
+    <note-view [detail]="currentNote" (update)="updateNote($event)"></note-view>
+  </div>
 </div>
