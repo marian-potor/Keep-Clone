@@ -17,13 +17,13 @@ import { TextareaDim } from '../models/textareaDim.interface';
           (input)="textChange($event, form.value)"  
           [style.height.px]="title.elementHeight"></textarea>
         <textarea 
-          name="note"
+          name="content"
           [ngModel]="detail?.content"
           placeholder="Take a note..." 
           (input)="textChange($event, form.value)" 
-          [style.height.px]="note.elementHeight"></textarea>
+          [style.height.px]="content.elementHeight"></textarea>
         <div class="reminder">
-          <span>{{detail.date | date:'LLL dd, h:mm a'}}</span>
+          <span>{{detail?.date | date:'LLL dd, h:mm a'}}</span>
           <button>X</button>
         </div>
         <input 
@@ -46,19 +46,19 @@ export class NewNoteComponent implements OnDestroy {
 
   lineHeight: number = 16;
   title :TextareaDim = {elementHeight:0, newLineMark: []};
-  note :TextareaDim = {elementHeight:0, newLineMark: []};
+  content :TextareaDim = {elementHeight:0, newLineMark: []};
   date: Date;
   currentNote: Note;
 
   constructor() {
     this.title.elementHeight = this.lineHeight;
-    this.note.elementHeight = this.lineHeight;
+    this.content.elementHeight = this.lineHeight;
   }
 
   ngOnDestroy() {
     // console.log(new Date(this.detail.date).toLocaleString());
     this.update.emit(this.detail);
-    console.log(this.detail);
+    // console.log(this.detail);
     // this.handleSubmit(form.value)
   }
 

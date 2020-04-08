@@ -8,10 +8,10 @@ import { Note } from '../models/note.interface';
   `
     <div class="note" (click)="editNote($event)">
       <div>
-        <h3>{{item.title}}</h3>
+        <h3>{{item?.title}}</h3>
       </div>
       <div>
-        {{item.content}}
+        {{item?.content}}
       </div>
     </div>
   `
