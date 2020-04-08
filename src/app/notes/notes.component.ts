@@ -39,7 +39,7 @@ export class NotesComponent implements OnInit {
   }
   startNewNote(): void {
     const id: number = this.noteList.reduce((highVal, el) => (el.id>highVal?el.id:highVal), 0);
-    this.newNote.id = id+1;  
+    this.newNote = Object.assign({}, this.newNote, {id: id+1});
     this.newNoteTrigger = 'none';
     event.stopPropagation();
   } //when clicking on it the new note div is hidden and the note-view is rendered
@@ -74,8 +74,8 @@ export class NotesComponent implements OnInit {
           return item = Object.assign({}, item, note);
         }
         return item;
-      })
-    })
+      });
+    });
   };
 
   createNote(note: Note) {
@@ -86,7 +86,7 @@ export class NotesComponent implements OnInit {
         "Content-Type": "application/json" // <--- don't forget this!
       }
     })
-    .then(() => this.noteList.push(note))
+    .then(() => this.noteList.push(note));
   };
 
   deleteNote(note: Note) {
@@ -96,6 +96,7 @@ export class NotesComponent implements OnInit {
       headers: {
         "Content-Type": "application/json" // <--- don't forget this!
       }
-    });
-  }
+    })
+    .then(() => this.noteList = this.noteList.filter((item) => item.id !== note.id));
+  };
 }

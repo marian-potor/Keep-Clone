@@ -9,7 +9,6 @@ import { TextareaDim } from '../models/textareaDim.interface';
   `
     <div class="note-view" (click)="stopEvent($event)">
       <form #form="ngForm" novalidate>
-        <div>{{form.value | json}}</div>
         <textarea 
           name="title"
           [ngModel]="detail?.title"
@@ -30,7 +29,6 @@ import { TextareaDim } from '../models/textareaDim.interface';
           type="datetime-local"
           name="date"
           [ngModel]="detail?.date">
-          <button type="submit">Submit</button>
       </form>
     </div>
   `

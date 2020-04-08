@@ -7,7 +7,8 @@
     <app-note 
       *ngFor="let note of noteList"
       [item]="note"
-      (edit)="onEditNote(note)">
+      (edit)="onEditNote(note)"
+      (delete)="deleteNote(note)">
     </app-note>
   </div>
   <div *ngIf="editNote" class="modal">
