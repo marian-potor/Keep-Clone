@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { NotesComponent } from './notes.component';
 import { NoteComponent } from './components/note.component';
 import { NewNoteComponent } from './components/new-note.component';
+import { NotesService } from './notes.service';
 
 
 
@@ -22,6 +23,7 @@ import { NewNoteComponent } from './components/new-note.component';
   ],
   exports: [
     NotesComponent
-  ]
+  ],
+  providers: [ NotesService ] //imports service at this module level
 })
 export class NotesModule { }

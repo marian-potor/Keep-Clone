@@ -71,7 +71,7 @@ export class NewNoteComponent implements OnDestroy {
       this[event.target.name].elementHeight -= this.lineHeight;
     }
   }
-  stopEvent(event:any ) {
+  stopEvent(event: any) {
     event.stopPropagation();
   } //the click event on the parent and it's children closes this section; 
     //the click event on this section is stoped from propagating so this section remains open
