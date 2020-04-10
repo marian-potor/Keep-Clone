@@ -14,6 +14,9 @@ import { Event } from '@angular/router';
       <div>
         {{item?.content}}
       </div>
+      <div>
+        <date-viewer *ngIf="item.date" [date]="item.date"></date-viewer>
+      </div>
       <button (click)="onDelete($event)">Delete</button>
     </div>
   `

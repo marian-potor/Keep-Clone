@@ -1,0 +1,28 @@
+.note-view {
+  background-color: white;
+  color: gray;
+  border: 1px solid rgb(184, 179, 179);
+  border-radius: 0.5rem;
+  width: 60%;
+  margin: auto;
+  padding: 0.7rem 1rem;
+  &:hover {
+    cursor: text;
+  }
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+  border: none;
+  box-shadow: none;
+  outline: 0;
+  &[name="title"] {
+    font-size: 1.5rem;
+    font-weight: bolder;
+  }
+}
+
+form div {
+  padding: 5px 0;
+}

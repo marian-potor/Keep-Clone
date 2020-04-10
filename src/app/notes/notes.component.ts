@@ -1,15 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-// import noteList from './notes-list';
+import { v4 as generateId } from 'uuid';
 import { Note } from './models/note.interface';
 import { NotesService } from './notes.service';
 
 const notesURL: string = 'http://localhost:3000/noteList';
-const someNote: Note =   {
-  id: 2,
-  title: 'someote',
-  content: 'Second ',
-  date: 3
-}
 
 @Component({
   selector: 'app-notes',
@@ -22,10 +16,10 @@ export class NotesComponent implements OnInit {
   editNote: boolean = false;
   currentNote: Note;
   newNote: Note = {    
-    id: 0,
+    id: '',
     title: '',
     content: '',
-    date: 0
+    date: null
   };
 
   constructor(private notesService: NotesService) {}
@@ -35,8 +29,8 @@ export class NotesComponent implements OnInit {
   }
 
   startNewNote(): void {
-    const id: number = this.noteList.reduce((highVal, el) => (el.id>highVal?el.id:highVal), 0);
-    this.newNote = Object.assign({}, this.newNote, {id: id+1});
+    const id: string = generateId();
+    this.newNote = Object.assign({}, this.newNote, {id: id, date: null});
     this.newNoteTrigger = 'none';
     event.stopPropagation();
   } //when clicking on it the new note div is hidden and the note-view is rendered

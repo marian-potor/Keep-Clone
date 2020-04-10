@@ -1,40 +1,46 @@
 import { Component, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import { Note } from '../models/note.interface';
-import { TextareaDim } from '../models/textareaDim.interface';
+import { Note } from '../../models/note.interface';
+import { TextareaDim } from '../../models/textareaDim.interface';
 
 @Component({
   selector: 'note-view',
-  styleUrls: ['../notes.component.scss'],
+  styleUrls: ['note-view.component.scss'],
   template: 
   `
     <div class="note-view" (click)="stopEvent($event)">
       <form #form="ngForm" novalidate>
-        <textarea 
+        <div>
+          <textarea 
           name="title"
           [ngModel]="detail?.title"
           placeholder="Title" 
           (input)="textChange($event, form.value)"  
           [style.height.px]="title.elementHeight"></textarea>
-        <textarea 
+        </div>
+        <div>
+          <textarea 
           name="content"
           [ngModel]="detail?.content"
           placeholder="Take a note..." 
           (input)="textChange($event, form.value)" 
           [style.height.px]="content.elementHeight"></textarea>
-        <div class="reminder">
-          <span>{{detail?.date | date:'LLL dd, h:mm a'}}</span>
-          <button>X</button>
         </div>
-        <input 
-          type="datetime-local"
-          name="date"
-          [ngModel]="detail?.date">
+        <date-viewer *ngIf="detail.date" [date]="detail.date"></date-viewer>
+        <div *ngIf="addEditReminder">
+          <input
+            #dateTime
+            type="datetime-local"
+            name="date"
+            [ngModel]="detail.date">
+          <button (click)="saveTimeDate(dateTime)">Save</button>
+        </div>
       </form>
+      <reminder-button (click)="showDateImput()"></reminder-button>
     </div>
   `
 })
 
-export class NewNoteComponent implements OnDestroy {
+export class NoteViewComponent implements OnDestroy {
 
   @Input()
   detail: Note;
@@ -45,8 +51,7 @@ export class NewNoteComponent implements OnDestroy {
   lineHeight: number = 16;
   title :TextareaDim = {elementHeight:0, newLineMark: []};
   content :TextareaDim = {elementHeight:0, newLineMark: []};
-  date: Date;
-  currentNote: Note;
+  addEditReminder: boolean = false;
 
   constructor() {
     this.title.elementHeight = this.lineHeight;
@@ -54,10 +59,13 @@ export class NewNoteComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    // console.log(new Date(this.detail.date).toLocaleString());
-    this.update.emit(this.detail);
-    // console.log(this.detail);
-    // this.handleSubmit(form.value)
+    if(
+      this.detail.title.length > 0 ||
+      this.detail.content.length > 0 ||
+      this.detail.date
+      ) {
+      this.update.emit(this.detail);
+    }
   }
 
   textChange(event: any, formValue: Note) {
@@ -71,6 +79,16 @@ export class NewNoteComponent implements OnDestroy {
       this[event.target.name].elementHeight -= this.lineHeight;
     }
   }
+
+  showDateImput() {
+    this.addEditReminder = true;
+  }
+
+  saveTimeDate(newTime){
+    this.detail.date = newTime.value;
+    this.addEditReminder = false;
+  }
+
   stopEvent(event: any) {
     event.stopPropagation();
   } //the click event on the parent and it's children closes this section; 

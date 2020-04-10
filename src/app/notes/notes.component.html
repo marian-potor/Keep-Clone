@@ -3,6 +3,7 @@
     Take a note...
   </div>
   <note-view *ngIf="newNoteTrigger === 'none'" [detail]="newNote" (update)="createNote($event)"></note-view>
+  <!-- <note-view [detail]="newNote" (update)="createNote($event)"></note-view> -->
   <div class="note-container">
     <app-note 
       *ngFor="let note of noteList"
