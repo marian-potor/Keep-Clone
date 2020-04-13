@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 
 import { NotesComponent } from './notes.component';
-import { NoteComponent } from './components/note.component';
+import { NoteComponent } from './components/note/note.component';
 import { NoteViewComponent } from './components/note-view/note-view.component';
 import { NotesService } from './notes.service';
 import { DateViewerComponent } from './components/date-viewer/date-viewer.component';
-import { ReminderButtonComponent } from './components/reminder-button.component';
+import { ReminderButtonComponent } from './components/reminder-button/reminder-button.component';
 
 
 

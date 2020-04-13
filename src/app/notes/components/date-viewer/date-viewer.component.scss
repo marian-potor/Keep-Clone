@@ -1,29 +1,41 @@
-.reminder {
-  display: inline-block;
+:host {
   position: relative;
-  height: 1rem;
-  color: black;
-  background: rgb(211, 210, 210);
-  border-radius: 0.6rem;
-  margin: 10px 0;
-  padding: 4px 10px;
+  padding: 5px 0;
   & button {
-    display: none;
+    position: relative;
+    right: 1.4rem;
+    bottom: 0.07rem;
+    height: 1.3rem;
+    width: 1.3rem;
+    display: none; 
+    border: none;
+    background: rgb(192, 192, 192);
+    border-radius: 50%;
+    &:hover {
+      background: rgb(182, 181, 181);
+    }
   }
   &:hover {
     & button {
       display: inline-block;
-      position: absolute;
-      right: 0;
-      border: none;
-      width: 1rem;
-      height: 1rem;
-      padding: 13px 13px 13px 13px;
-      background: rgb(211, 210, 210);
-      border-radius: 50%;
-      &:hover {
-        background: rgb(182, 181, 181);
-      }
+      cursor: pointer;
     }
   }
 }
+.reminder {
+  display: inline-block;
+  height: 1.5rem;
+  box-sizing: border-box;
+  background: rgb(211, 210, 210);
+  border-radius: 0.7rem;
+  margin: 2rem 0 0.5rem;
+  padding: 0.2rem 10px;
+  & span {
+    box-sizing: border-box;
+    height: 1.1rem;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+

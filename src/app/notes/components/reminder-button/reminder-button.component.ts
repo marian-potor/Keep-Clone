@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'reminder-button',
-  styleUrls: ['../notes.component.scss'],
+  styleUrls: ['../../notes.component.scss'],
   template: `
     <div>
       <button>Reminder</button>

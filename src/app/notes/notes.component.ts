@@ -43,6 +43,7 @@ export class NotesComponent implements OnInit {
   onEditNote(note: Note) {
     this.currentNote = note;
     this.editNote = true;
+    this.updateNote(note)
   }
 
   getNotes(): void {

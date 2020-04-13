@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Note } from '../models/note.interface';
+import { Note } from '../../models/note.interface';
 import { Event } from '@angular/router';
 
 @Component({
   selector: 'app-note',
-  styleUrls: ['../notes.component.scss'],
+  styleUrls: ['../../notes.component.scss'],
   template: 
   `
     <div class="note" (click)="onEdit($event)">
@@ -15,7 +15,7 @@ import { Event } from '@angular/router';
         {{item?.content}}
       </div>
       <div>
-        <date-viewer *ngIf="item.date" [date]="item.date"></date-viewer>
+        <date-viewer *ngIf="item.date" [date]="item.date" (newDate)="onDateUpdate($event)"></date-viewer>
       </div>
       <button (click)="onDelete($event)">Delete</button>
     </div>
@@ -41,6 +41,11 @@ export class NoteComponent {
   onDelete(event: any) {
     event.stopPropagation();
     this.delete.emit(this.item);
+  }
+
+  onDateUpdate(date: Date) {
+    this.item.date = date;
+    this.edit.emit(this.item);
   }
   
 }

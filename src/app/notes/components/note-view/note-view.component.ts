@@ -84,7 +84,7 @@ export class NoteViewComponent implements OnDestroy {
     this.addEditReminder = true;
   }
 
-  saveTimeDate(newTime){
+  saveTimeDate(newTime: any){
     this.detail.date = newTime.value;
     this.addEditReminder = false;
   }
