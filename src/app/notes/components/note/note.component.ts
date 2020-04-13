@@ -15,9 +15,11 @@ import { Event } from '@angular/router';
         {{item?.content}}
       </div>
       <div>
-        <date-viewer *ngIf="item.date" [date]="item.date" (newDate)="onDateUpdate($event)"></date-viewer>
+        <date-viewer *ngIf="item.date" [date]="item.date" (edit)="showDateImput()" (newDate)="onDateUpdate($event)"></date-viewer>
       </div>
+      <reminder-button (click)="showDateImput()"></reminder-button>
       <button (click)="onDelete($event)">Delete</button>
+      <date-input *ngIf="addEditReminder" [currentDate]="item.date" (date)="saveTimeDate($event)"></date-input>
     </div>
   `
 })
@@ -33,8 +35,14 @@ export class NoteComponent {
   @Output()
   delete: EventEmitter<Note> = new EventEmitter<Note>();
 
+  addEditReminder: boolean = false;
+
   onEdit(event: any): void {
     event.stopPropagation();
+    if (this.addEditReminder === true) {
+      this.addEditReminder = false;
+      return;
+    }
     this.edit.emit(this.item);
   } 
 
@@ -46,6 +54,16 @@ export class NoteComponent {
   onDateUpdate(date: Date) {
     this.item.date = date;
     this.edit.emit(this.item);
+  }
+
+  saveTimeDate(newDateTime: Date){
+    this.item.date = newDateTime;
+    this.addEditReminder = false;
+  }
+
+  showDateImput() {
+    event.stopPropagation();
+    this.addEditReminder = true;
   }
   
 }

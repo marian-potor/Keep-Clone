@@ -9,6 +9,7 @@ import { NoteViewComponent } from './components/note-view/note-view.component';
 import { NotesService } from './notes.service';
 import { DateViewerComponent } from './components/date-viewer/date-viewer.component';
 import { ReminderButtonComponent } from './components/reminder-button/reminder-button.component';
+import { DateInputFieldComponent } from './components/date-input-field/date-input-field.component';
 
 
 
@@ -18,7 +19,8 @@ import { ReminderButtonComponent } from './components/reminder-button/reminder-b
     NoteComponent,
     NoteViewComponent,
     DateViewerComponent,
-    ReminderButtonComponent
+    ReminderButtonComponent,
+    DateInputFieldComponent
   ],
   imports: [
     CommonModule,

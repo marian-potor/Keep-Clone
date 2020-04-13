@@ -25,15 +25,8 @@ import { TextareaDim } from '../../models/textareaDim.interface';
           (input)="textChange($event, form.value)" 
           [style.height.px]="content.elementHeight"></textarea>
         </div>
-        <date-viewer *ngIf="detail.date" [date]="detail.date"></date-viewer>
-        <div *ngIf="addEditReminder">
-          <input
-            #dateTime
-            type="datetime-local"
-            name="date"
-            [ngModel]="detail.date">
-          <button (click)="saveTimeDate(dateTime)">Save</button>
-        </div>
+        <date-viewer *ngIf="detail.date" [date]="detail.date" (edit)="showDateImput()" (newDate)="onDateUpdate($event)"></date-viewer>
+        <date-input *ngIf="addEditReminder" [currentDate]="detail.date" (date)="saveTimeDate($event)"></date-input>
       </form>
       <reminder-button (click)="showDateImput()"></reminder-button>
     </div>
@@ -52,6 +45,7 @@ export class NoteViewComponent implements OnDestroy {
   title :TextareaDim = {elementHeight:0, newLineMark: []};
   content :TextareaDim = {elementHeight:0, newLineMark: []};
   addEditReminder: boolean = false;
+  dateWasRemoved: boolean = false;
 
   constructor() {
     this.title.elementHeight = this.lineHeight;
@@ -62,9 +56,11 @@ export class NoteViewComponent implements OnDestroy {
     if(
       this.detail.title.length > 0 ||
       this.detail.content.length > 0 ||
-      this.detail.date
+      this.detail.date ||
+      this.dateWasRemoved
       ) {
-      this.update.emit(this.detail);
+        this.dateWasRemoved = false;
+        this.update.emit(this.detail);
     }
   }
 
@@ -81,16 +77,23 @@ export class NoteViewComponent implements OnDestroy {
   }
 
   showDateImput() {
+    event.stopPropagation();
     this.addEditReminder = true;
   }
 
-  saveTimeDate(newTime: any){
-    this.detail.date = newTime.value;
+  saveTimeDate(newDateTime: Date){
+    this.detail.date = newDateTime;
     this.addEditReminder = false;
+  }
+
+  onDateUpdate(date: Date) {
+    this.detail.date = date;
+    this.dateWasRemoved = true;
   }
 
   stopEvent(event: any) {
     event.stopPropagation();
+    this.addEditReminder = false;
   } //the click event on the parent and it's children closes this section; 
     //the click event on this section is stoped from propagating so this section remains open
 }
