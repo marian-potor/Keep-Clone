@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  button {
+    border: 0;
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    background-color: rgb(231, 228, 228, 0);
+    &:hover {
+      background-color: rgb(231, 228, 228, 0.6);
+    }
+    fa-icon {
+      font-size: 1.0rem;
+      color: rgb(34, 33, 33);
+    }
+  }
+}

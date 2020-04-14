@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Note } from '../../models/note.interface';
-import { Event } from '@angular/router';
 
 @Component({
   selector: 'app-note',
@@ -17,8 +16,12 @@ import { Event } from '@angular/router';
       <div>
         <date-viewer *ngIf="item.date" [date]="item.date" (edit)="showDateImput()" (newDate)="onDateUpdate($event)"></date-viewer>
       </div>
-      <reminder-button (click)="showDateImput()"></reminder-button>
-      <button (click)="onDelete($event)">Delete</button>
+      <button-container>
+        <reminder-button (click)="showDateImput()"></reminder-button>
+        <color-button></color-button>
+        <image-button></image-button>
+        <remove-button (click)="onDelete($event)"></remove-button>
+      </button-container>
       <date-input *ngIf="addEditReminder" [currentDate]="item.date" (date)="saveTimeDate($event)"></date-input>
     </div>
   `
