@@ -3,7 +3,7 @@ import { Note } from '../../models/note.interface';
 
 @Component({
   selector: 'app-note',
-  styleUrls: ['../../notes.component.scss'],
+  styleUrls: ['./note.component.scss'],
   template: 
   `
     <div class="note" (click)="onEdit($event)">
@@ -33,14 +33,17 @@ export class NoteComponent {
   item: Note;
 
   @Output()
-  edit: EventEmitter<Note> = new EventEmitter<Note>();
+  edit: EventEmitter<Note> = new EventEmitter<Note>(); //for opening note in note-view
+
+  @Output()
+  update: EventEmitter<Note> = new EventEmitter<Note>();
 
   @Output()
   delete: EventEmitter<Note> = new EventEmitter<Note>();
 
   addEditReminder: boolean = false;
 
-  onEdit(event: any): void {
+  onEdit(event: MouseEvent): void {
     event.stopPropagation();
     if (this.addEditReminder === true) {
       this.addEditReminder = false;
@@ -49,22 +52,23 @@ export class NoteComponent {
     this.edit.emit(this.item);
   } 
 
-  onDelete(event: any) {
+  onDelete(event: MouseEvent): void {
     event.stopPropagation();
     this.delete.emit(this.item);
   }
 
-  onDateUpdate(date: Date) {
+  onDateUpdate(date: Date): void {
     this.item.date = date;
-    this.edit.emit(this.item);
+    this.update.emit(this.item);
   }
 
-  saveTimeDate(newDateTime: Date){
+  saveTimeDate(newDateTime: Date): void{
     this.item.date = newDateTime;
     this.addEditReminder = false;
+    this.update.emit(this.item);
   }
 
-  showDateImput() {
+  showDateImput(): void {
     event.stopPropagation();
     this.addEditReminder = true;
   }

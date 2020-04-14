@@ -1,18 +1,21 @@
 <div (click)="closeNoteWiew()">
-  <div class="add-new-note" [style.display]="newNoteTrigger" (click)="startNewNote()"> 
-    Take a note...
+  <div class="new-note-container">
+    <div class="add-new-note" [style.display]="newNoteTrigger" (click)="startNewNote()"> 
+      Take a note...
+    </div>
+    <note-view *ngIf="newNoteTrigger === 'none'" [detail]="newNote" [newNote]="true" (update)="createNote($event)"></note-view>
   </div>
-  <note-view *ngIf="newNoteTrigger === 'none'" [detail]="newNote" (update)="createNote($event)"></note-view>
   <!-- <note-view [detail]="newNote" (update)="createNote($event)"></note-view> -->
   <div class="note-container">
     <app-note 
       *ngFor="let note of noteList"
       [item]="note"
-      (edit)="onEditNote(note)"
-      (delete)="deleteNote(note)">
+      (update)="updateNote($event)"
+      (edit)="onEditNote($event)"
+      (delete)="deleteNote($event)">
     </app-note>
   </div>
   <div *ngIf="editNote" class="modal">
-    <note-view [detail]="currentNote" (update)="updateNote($event)"></note-view>
+    <note-view [detail]="currentNote" [newNote]="false" (update)="updateNote($event)" (delete)="onDeleteNote($event)"></note-view>
   </div>
 </div>

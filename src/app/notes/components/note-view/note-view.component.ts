@@ -28,7 +28,12 @@ import { TextareaDim } from '../../models/textareaDim.interface';
         <date-viewer *ngIf="detail.date" [date]="detail.date" (edit)="showDateImput()" (newDate)="onDateUpdate($event)"></date-viewer>
         <date-input *ngIf="addEditReminder" [currentDate]="detail.date" (date)="saveTimeDate($event)"></date-input>
       </form>
-      <reminder-button (click)="showDateImput()"></reminder-button>
+      <button-container>
+        <reminder-button (click)="showDateImput()"></reminder-button>
+        <color-button></color-button>
+        <image-button></image-button>
+        <remove-button *ngIf="!newNote" (click)="onDelete($event)"></remove-button>
+      </button-container>
     </div>
   `
 })
@@ -38,33 +43,41 @@ export class NoteViewComponent implements OnDestroy {
   @Input()
   detail: Note;
 
+  @Input()
+  newNote: boolean; 
+  //if newNote true a new instance will not be created if all fields are empty and remove button is not available
+  //but for existing notes all fields can be edited to be empty
+
   @Output()
   update: EventEmitter<Note> = new EventEmitter<Note>();
+
+  @Output()
+  delete: EventEmitter<Note> = new EventEmitter<Note>();
 
   lineHeight: number = 16;
   title :TextareaDim = {elementHeight:0, newLineMark: []};
   content :TextareaDim = {elementHeight:0, newLineMark: []};
   addEditReminder: boolean = false;
-  dateWasRemoved: boolean = false;
+  deleted: boolean = false; //if note is deleted ngOnDestroi does not emit info
 
   constructor() {
     this.title.elementHeight = this.lineHeight;
     this.content.elementHeight = this.lineHeight;
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
+    if (this.deleted) return;
     if(
       this.detail.title.length > 0 ||
       this.detail.content.length > 0 ||
       this.detail.date ||
-      this.dateWasRemoved
+      !this.newNote
       ) {
-        this.dateWasRemoved = false;
         this.update.emit(this.detail);
     }
   }
 
-  textChange(event: any, formValue: Note) {
+  textChange(event: any, formValue: Note): void {
     this.detail = Object.assign({}, this.detail, formValue)
     if (event.target.scrollHeight > event.target.clientHeight) {
       this[event.target.name].elementHeight += this.lineHeight;
@@ -76,22 +89,27 @@ export class NoteViewComponent implements OnDestroy {
     }
   }
 
-  showDateImput() {
+  showDateImput(): void {
     event.stopPropagation();
     this.addEditReminder = true;
   }
 
-  saveTimeDate(newDateTime: Date){
+  saveTimeDate(newDateTime: Date): void{
     this.detail.date = newDateTime;
     this.addEditReminder = false;
   }
 
-  onDateUpdate(date: Date) {
+  onDateUpdate(date: Date): void {
     this.detail.date = date;
-    this.dateWasRemoved = true;
   }
 
-  stopEvent(event: any) {
+  onDelete(event: MouseEvent): void {
+    event.stopPropagation(); 
+    this.deleted = true;
+    this.delete.emit(this.detail)
+  }
+
+  stopEvent(event: MouseEvent): void {
     event.stopPropagation();
     this.addEditReminder = false;
   } //the click event on the parent and it's children closes this section; 

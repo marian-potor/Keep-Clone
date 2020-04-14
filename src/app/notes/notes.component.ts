@@ -24,7 +24,7 @@ export class NotesComponent implements OnInit {
 
   constructor(private notesService: NotesService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getNotes();
   }
 
@@ -40,10 +40,15 @@ export class NotesComponent implements OnInit {
     this.editNote = false;
   }//the click event on this section closes the note-view
 
-  onEditNote(note: Note) {
+  onEditNote(note: Note): void {
     this.currentNote = note;
     this.editNote = true;
     this.updateNote(note)
+  }
+
+  onDeleteNote(note: Note): void {
+    this.editNote = false;
+    this.deleteNote(note);
   }
 
   getNotes(): void {
@@ -51,7 +56,7 @@ export class NotesComponent implements OnInit {
     .subscribe((data: Note[]) => this.noteList = data);
   }
 
-  updateNote(note: Note) {
+  updateNote(note: Note): void {
     this.notesService.updateNote(note)
     .subscribe((data: Note) => {
       this.noteList = this.noteList.map((item: Note) => {
@@ -63,12 +68,12 @@ export class NotesComponent implements OnInit {
     })
   }
 
-  createNote(note: Note) {
+  createNote(note: Note): void {
     this.notesService.createNote(note)
     .subscribe(data => this.noteList.push(data));
   };
 
-  deleteNote(note: Note) {
+  deleteNote(note: Note): void {
     this.notesService.removeNote(note.id)
     .subscribe(data => this.noteList = this.noteList.filter((item) => item.id !== note.id));
   };

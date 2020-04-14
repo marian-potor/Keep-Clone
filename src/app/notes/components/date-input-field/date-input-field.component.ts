@@ -22,14 +22,14 @@ export class DateInputFieldComponent {
   @Output()
   date: EventEmitter<string> = new EventEmitter<string>();
 
-  saveReminder(reminder: HTMLInputElement) {
+  saveReminder(reminder: HTMLInputElement): void {
     event.stopPropagation();
     if (reminder.value) {
       this.date.emit(reminder.value);
     }
   }
 
-  stopEvent(event: any) {
+  stopEvent(event: MouseEvent) {
     event.stopPropagation();
   }
 }

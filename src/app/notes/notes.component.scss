@@ -5,23 +5,9 @@
   height: 500px;
 }
 
-.note {
-  width: 12rem;
-  border: 1px solid rgb(184, 179, 179);
-  padding: 1rem 1rem 0;
-  margin: 0.4rem;
-  border-radius: 0.5rem;
-  word-wrap: break-word;
-  button-container {
-    visibility: hidden;
-  }
-  &:hover {
-    box-shadow: 2px 2px 2px rgb(184, 179, 179);
-    button-container {
-      visibility: visible;
-    }
-  }
-  
+.new-note-container {
+  width: 100%;
+  margin: 1.5rem 0;
 }
 
 .add-new-note {
