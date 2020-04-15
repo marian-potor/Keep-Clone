@@ -15,6 +15,10 @@
         visibility: visible;
         opacity: 1;
       }
+      ~.color-menu {
+        visibility: visible;
+        opacity: 1;
+      }
     }
     fa-icon {
       font-size: 1.0rem;
@@ -38,5 +42,39 @@
     z-index: 1;
     opacity: 0;
     transition: opacity 0.5s;
+  }
+}
+
+.color-menu {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 9.25rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  bottom: 100%;
+  box-sizing: border-box;
+  padding: 0.125rem 0.25rem;
+  z-index: 1;
+  background-color: rgb(255, 255, 255);
+  span {
+    height: 2rem;
+    width: 2rem;
+    box-sizing: border-box;
+    border-radius: 50%;
+    margin: 0.125rem 0;
+    border: 1px solid rgb(207, 205, 205);
+    transition: border 0.5s;
+    &:hover {
+      border: 1.5px solid rgb(0, 0, 0);
+    }
+  }
+  &:hover {
+    visibility: visible;
+    opacity: 1;
   }
 }

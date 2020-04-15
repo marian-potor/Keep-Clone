@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
+import { ButtonTemplate } from '../button-template/button-template';
 
 @Component({
   selector: 'image-button',
@@ -7,7 +8,7 @@ import { faImage } from '@fortawesome/free-regular-svg-icons';
   templateUrl: '../button-template/button-template.html'
 })
 
-export class ImageButtonComponent {
+export class ImageButtonComponent extends ButtonTemplate {
   icon = faImage;
-  buttonInfo: string = 'Add image'
+  buttonInfo = 'Add image'
 }

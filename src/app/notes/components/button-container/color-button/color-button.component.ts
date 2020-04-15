@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { faPalette, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faPalette } from '@fortawesome/free-solid-svg-icons';
+import { ButtonTemplate } from '../button-template/button-template';
 
 @Component({
   selector: 'color-button',
@@ -7,10 +8,11 @@ import { faPalette, IconDefinition } from '@fortawesome/free-solid-svg-icons';
   templateUrl: '../button-template/button-template.html'
 })
 
-export class ColorButtonComponent {
-  icon: IconDefinition = faPalette;
-  buttonInfo: string = 'Change color';
-  colorList: string[] = [
+export class ColorButtonComponent extends ButtonTemplate {
+
+  icon = faPalette;
+  buttonInfo = 'Change color';
+  colorList = [
     'rgb(255, 255, 255)',
     'rgb(242, 139, 130)',
     'rgb(251, 188, 4)',

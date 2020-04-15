@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { ButtonTemplate } from '../button-template/button-template';
 
 @Component({
   selector: 'remove-button',
@@ -7,7 +8,7 @@ import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
   templateUrl: '../button-template/button-template.html'
 })
 
-export class RemoveButtonComponent {
+export class RemoveButtonComponent extends ButtonTemplate {
   icon = faTrashAlt;
-  buttonInfo: string = 'Delete note'
+  buttonInfo = 'Delete note'
 }

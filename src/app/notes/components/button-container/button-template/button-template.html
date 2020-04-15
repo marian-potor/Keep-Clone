@@ -2,3 +2,6 @@
   <fa-icon [icon]="icon"></fa-icon>
 </button>
 <span class="btn-info">{{buttonInfo}}</span>
+<div *ngIf="colorList.length" class="color-menu">
+  <span *ngFor="let color of colorList" [style.background-color]="color"></span>
+</div>

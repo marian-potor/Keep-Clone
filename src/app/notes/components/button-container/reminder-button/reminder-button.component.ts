@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
+import { ButtonTemplate } from '../button-template/button-template';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { faBell } from '@fortawesome/free-regular-svg-icons';
   templateUrl: '../button-template/button-template.html'
 })
 
-export class ReminderButtonComponent {
+export class ReminderButtonComponent extends ButtonTemplate{
   icon = faBell;
-  buttonInfo: string = 'Remind me'
+  buttonInfo = 'Remind me'
 }
