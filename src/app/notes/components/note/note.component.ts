@@ -6,7 +6,7 @@ import { Note } from '../../models/note.interface';
   styleUrls: ['./note.component.scss'],
   template: 
   `
-    <div class="note" (click)="onEdit($event)">
+    <div class="note" (click)="onEdit($event)" [style.background-color]="item.color">
       <div>
         <h3>{{item?.title}}</h3>
       </div>
@@ -18,7 +18,7 @@ import { Note } from '../../models/note.interface';
       </div>
       <button-container>
         <reminder-button (click)="showDateImput()"></reminder-button>
-        <color-button></color-button>
+        <color-button (color)="onColorChange($event)"></color-button>
         <image-button></image-button>
         <remove-button (click)="onDelete($event)"></remove-button>
       </button-container>
@@ -57,8 +57,13 @@ export class NoteComponent {
     this.delete.emit(this.item);
   }
 
+  onColorChange(color: string){
+    this.item = Object.assign({}, this.item, {color});
+    this.update.emit(this.item);
+  }
+
   onDateUpdate(date: Date): void {
-    this.item.date = date;
+    this.item = Object.assign({}, this.item, {date});
     this.update.emit(this.item);
   }
 

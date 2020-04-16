@@ -7,7 +7,7 @@ import { TextareaDim } from '../../models/textareaDim.interface';
   styleUrls: ['note-view.component.scss'],
   template: 
   `
-    <div class="note-view" (click)="stopEvent($event)">
+    <div class="note-view" (click)="stopEvent($event)" [style.background-color]="detail.color">
       <form #form="ngForm" novalidate>
         <div>
           <textarea 
@@ -30,7 +30,7 @@ import { TextareaDim } from '../../models/textareaDim.interface';
       </form>
       <button-container>
         <reminder-button (click)="showDateImput()"></reminder-button>
-        <color-button></color-button>
+        <color-button (color)="onColorChange($event)"></color-button>
         <image-button></image-button>
         <remove-button *ngIf="!newNote" (click)="onDelete($event)"></remove-button>
       </button-container>
@@ -101,6 +101,10 @@ export class NoteViewComponent implements OnDestroy {
 
   onDateUpdate(date: Date): void {
     this.detail.date = date;
+  }
+
+  onColorChange(color: string){
+    this.detail = Object.assign({}, this.detail, {color});
   }
 
   onDelete(event: MouseEvent): void {

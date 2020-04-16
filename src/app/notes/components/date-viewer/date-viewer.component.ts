@@ -1,17 +1,21 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { IconDefinition, faClock } from '@fortawesome/free-regular-svg-icons';
+
 
 @Component({
   selector: "date-viewer",
   styleUrls: ["date-viewer.component.scss"],
   template: `
     <div class="reminder" (click)="updateReminder($event)">
-      <span>{{date | date:'LLL dd, h:mm a'}}</span>
+      <span><fa-icon [icon]="icon"></fa-icon>{{date | date:'LLL dd, h:mm a'}}</span>
     </div>
     <button (click)="removeReminder($event)">X</button>
   `
 })
 
 export class DateViewerComponent {
+  icon: IconDefinition = faClock;
+
   @Input()
   date: Date;
 

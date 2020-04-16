@@ -1,5 +1,4 @@
 .note-view {
-  background-color: white;
   color: gray;
   border: 1px solid rgb(184, 179, 179);
   border-radius: 0.5rem;
@@ -12,6 +11,7 @@
 }
 
 textarea {
+  background-color: inherit;
   width: 100%;
   resize: none;
   border: none;

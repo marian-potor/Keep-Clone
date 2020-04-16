@@ -1,8 +1,9 @@
 :host {
+  position: relative;
     button {
-      position: relative;
-      right: 1.4rem;
-      bottom: 0.07rem;
+      position: absolute;
+      right: 0.1rem;
+      bottom: -0.1rem;
       height: 1.3rem;
       width: 1.3rem;
       display: none; 
@@ -25,16 +26,24 @@
   height: 1.5rem;
   box-sizing: border-box;
   color: black;
-  background: rgb(231, 228, 228);
+  background: rgb(214, 216, 218);
   border-radius: 0.7rem;
   margin: 2rem 0 0.5rem;
   padding: 0.2rem 10px;
     span {
+      position: relative;
       box-sizing: border-box;
       height: 1.1rem;
+      padding-left: 1.2rem;
+      fa-icon {
+        position: absolute;
+        left: -0.3rem;
+        color: rgb(82, 82, 82);
+      }
     }
     &:hover {
       cursor: pointer;
     }
 }
+
 

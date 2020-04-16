@@ -19,7 +19,8 @@ export class NotesComponent implements OnInit {
     id: '',
     title: '',
     content: '',
-    date: null
+    date: null,
+    color: 'rgb(255, 255, 255)'
   };
 
   constructor(private notesService: NotesService) {}
@@ -28,17 +29,19 @@ export class NotesComponent implements OnInit {
     this.getNotes();
   }
 
+   //when clicking on it the new note div is hidden and the note-view is rendered
   startNewNote(): void {
     const id: string = generateId();
     this.newNote = Object.assign({}, this.newNote, {id: id, date: null});
     this.newNoteTrigger = 'none';
     event.stopPropagation();
-  } //when clicking on it the new note div is hidden and the note-view is rendered
+  }
 
+  //the click event on this section closes the note-view
   closeNoteWiew(): void {
     this.newNoteTrigger = 'block';
     this.editNote = false;
-  }//the click event on this section closes the note-view
+  }
 
   onEditNote(note: Note): void {
     this.currentNote = note;

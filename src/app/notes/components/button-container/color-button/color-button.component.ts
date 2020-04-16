@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { faPalette } from '@fortawesome/free-solid-svg-icons';
 import { ButtonTemplate } from '../button-template/button-template';
 
@@ -26,4 +26,5 @@ export class ColorButtonComponent extends ButtonTemplate {
     'rgb(230, 201, 168)',
     'rgb(232, 234, 237)'
   ];
+
 }
