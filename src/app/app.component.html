@@ -1,1 +1,2 @@
-<app-notes></app-notes>
+<app-users (user)="loadUserData($event)" *ngIf="!currentUser"></app-users>
+<app-notes *ngIf="currentUser"></app-notes>

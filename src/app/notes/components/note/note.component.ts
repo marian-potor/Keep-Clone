@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Note } from '../../models/note.interface';
+import { Note } from '../../../models/note.interface';
 
 @Component({
   selector: 'app-note',

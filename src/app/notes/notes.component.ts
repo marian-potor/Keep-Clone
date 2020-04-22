@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { v4 as generateId } from 'uuid';
-import { Note } from './models/note.interface';
+import { Note } from '../models/note.interface';
 import { NotesService } from './notes.service';
 
 const notesURL: string = 'http://localhost:3000/noteList';
@@ -10,7 +10,8 @@ const notesURL: string = 'http://localhost:3000/noteList';
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss'],
 })
-export class NotesComponent implements OnInit {
+export class NotesComponent implements OnInit{
+
   noteList: Note[];
   newNoteTrigger: string = 'block';
   editNote: boolean = false;

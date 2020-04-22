@@ -1,6 +1,6 @@
 import { Component, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import { Note } from '../../models/note.interface';
-import { TextareaDim } from '../../models/textareaDim.interface';
+import { Note } from '../../../models/note.interface';
+import { TextareaDim } from '../../../models/textareaDim.interface';
 
 @Component({
   selector: 'note-view',
@@ -43,10 +43,10 @@ export class NoteViewComponent implements OnDestroy {
   @Input()
   detail: Note;
 
-  @Input()
-  newNote: boolean; 
   //if newNote true a new instance will not be created if all fields are empty and remove button is not available
   //but for existing notes all fields can be edited to be empty
+  @Input()
+  newNote: boolean; 
 
   @Output()
   update: EventEmitter<Note> = new EventEmitter<Note>();

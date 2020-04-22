@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { Note } from './models/note.interface';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Note } from '../models/note.interface';
 
 @Injectable(
 //   {
