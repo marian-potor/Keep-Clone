@@ -10,6 +10,5 @@ export class AppComponent {
   currentUser: User;
   loadUserData(event: User) {
     this.currentUser = event;
-    console.log('2nd', event);
   }
 }

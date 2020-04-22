@@ -6,6 +6,6 @@ export interface User {
   password: string,
   email?: string,
   firstName?: string,
-  lastname?: string,
+  lastName?: string,
   noteList?: Note[]
 }

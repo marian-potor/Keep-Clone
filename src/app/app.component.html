@@ -1,2 +1,3 @@
+<div *ngIf="currentUser">Hello {{currentUser?.firstName}}</div>
 <app-users (user)="loadUserData($event)" *ngIf="!currentUser"></app-users>
-<app-notes *ngIf="currentUser"></app-notes>
+<app-notes *ngIf="currentUser" [user]="currentUser"></app-notes>

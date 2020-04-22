@@ -1,18 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { v4 as generateId } from 'uuid';
 import { Note } from '../models/note.interface';
-import { NotesService } from './notes.service';
-
-const notesURL: string = 'http://localhost:3000/noteList';
+import { User } from '../models/user.interface';
+import { UsersService } from '../users/users.service';
 
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss'],
 })
-export class NotesComponent implements OnInit{
+export class NotesComponent {
 
-  noteList: Note[];
+  @Input()
+  user: User;
+
   newNoteTrigger: string = 'block';
   editNote: boolean = false;
   currentNote: Note;
@@ -24,11 +25,11 @@ export class NotesComponent implements OnInit{
     color: 'rgb(255, 255, 255)'
   };
 
-  constructor(private notesService: NotesService) {}
+  constructor(private notesService: UsersService) {}
 
-  ngOnInit(): void {
-    this.getNotes();
-  }
+  // ngOnInit(): void {
+  //   this.getNotes();
+  // }
 
    //when clicking on it the new note div is hidden and the note-view is rendered
   startNewNote(): void {
@@ -55,30 +56,31 @@ export class NotesComponent implements OnInit{
     this.deleteNote(note);
   }
 
-  getNotes(): void {
-    this.notesService.getNotes()
-    .subscribe((data: Note[]) => this.noteList = data);
-  }
+  // getNotes(): void {
+  //   this.notesService.getNotes()
+  //   .subscribe((data: Note[]) => this.user.noteList = data);
+  // }
 
   updateNote(note: Note): void {
-    this.notesService.updateNote(note)
-    .subscribe((data: Note) => {
-      this.noteList = this.noteList.map((item: Note) => {
-        if(item.id === data.id) {
-          return item = Object.assign({}, item, data);
-        }
-        return item;
-      });
-    })
+    this.user.noteList = this.user.noteList.map((item: Note) => {
+      if(item.id === note.id) {
+        return item = Object.assign({}, item, note);
+      }
+      return item;
+    });
+    this.notesService.updateUser(this.user)
+    .subscribe((data: User) => console.log(data))
   }
 
   createNote(note: Note): void {
-    this.notesService.createNote(note)
-    .subscribe(data => this.noteList.push(data));
+    this.user.noteList.push(note)
+    this.notesService.updateUser(this.user)
+    .subscribe((data: User) => console.log(data));
   };
 
   deleteNote(note: Note): void {
-    this.notesService.removeNote(note.id)
-    .subscribe(data => this.noteList = this.noteList.filter((item) => item.id !== note.id));
+    this.user.noteList = this.user.noteList.filter((item) => item.id !== note.id)
+    this.notesService.updateUser(this.user)
+    .subscribe(data => console.log(data));
   };
 }

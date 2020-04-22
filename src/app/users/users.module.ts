@@ -5,14 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { UsersComponent } from './users.component';
 import { LoginFormComponent } from './login/login-form.component';
-import { UsersService } from './users.service';
-
-
+import { RegisterFormComponent } from './register/register-form.component';
 
 @NgModule({
   declarations: [
     UsersComponent,
-    LoginFormComponent  
+    LoginFormComponent,
+    RegisterFormComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +21,6 @@ import { UsersService } from './users.service';
   exports: [
     UsersComponent
   ],
-  providers: [UsersService]
+  providers: []
 })
 export class UsersModule { }

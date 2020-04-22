@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { NotesModule } from './notes/notes.module';
 import { UsersModule } from './users/users.module';
+import { UsersService } from './users/users.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { UsersModule } from './users/users.module';
     AppRoutingModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
