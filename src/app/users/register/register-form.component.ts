@@ -6,34 +6,41 @@ import { v4 as generateId } from 'uuid';
 
 @Component({
   selector: 'register-form',
+  styleUrls: ['../users.component.scss'],
   template: `
-    <form #form="ngForm" (ngSubmit)="onRegister(form.value, form.valid, email.errors?.email?true:false)">
-      <div>
-        <input type="text" name="firstName" placeholder="First name" required [(ngModel)]="newUser.firstName">
-      </div>
-      <div>
-        <input type="text" name="lasttName" placeholder="Last name" required [(ngModel)]="newUser.lastName">
-      </div>
-      <div>
-        <input  #email="ngModel" type="email" name="email" placeholder="Email" required [(ngModel)]="newUser.email" email>
-      </div>
-      <div>
-        <input type="text" name="username" placeholder="Username" required [(ngModel)]="newUser.username">
-      </div>
-      <div>
-        <input type="password" name="password" placeholder="Password" required [(ngModel)]="newUser.password">
-      </div>
-      <div>
-        <button type="submit">Register</button>
-      </div>
-      <div *ngIf="inputError">
-        All fields are required
-      </div>
-      <div *ngIf="userDuplicate">
-        Username already exists. Please use a different username.
-      </div>
-      <div *ngIf="invalidEmail">Email is not valid</div>
-    </form>
+    <div class="form-container">
+      <form #form="ngForm" (ngSubmit)="onRegister(form.value, form.valid, email.errors?.email?true:false)">
+        <div>
+          <h2>Register</h2>
+          <hr>
+        </div>
+        <div>
+          <input type="text" name="firstName" placeholder="First name" required [(ngModel)]="newUser.firstName">
+        </div>
+        <div>
+          <input type="text" name="lasttName" placeholder="Last name" required [(ngModel)]="newUser.lastName">
+        </div>
+        <div>
+          <input  #email="ngModel" type="email" name="email" placeholder="Email" required [(ngModel)]="newUser.email" email>
+        </div>
+        <div>
+          <input type="text" name="username" placeholder="Username" required [(ngModel)]="newUser.username">
+        </div>
+        <div>
+          <input type="password" name="password" placeholder="Password" required [(ngModel)]="newUser.password">
+        </div>
+        <div>
+          <button type="submit">Register</button>
+        </div>
+        <div *ngIf="inputError">
+          All fields are required
+        </div>
+        <div *ngIf="userDuplicate">
+          Username already exists. Please use a different username.
+        </div>
+        <div *ngIf="invalidEmail">Email is not valid</div>
+      </form>
+    </div>
   `
 })
 

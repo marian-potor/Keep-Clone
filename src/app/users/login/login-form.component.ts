@@ -4,24 +4,31 @@ import { UsersService } from '../users.service';
 
 @Component({
   selector: 'login-form',
+  styleUrls: ['../users.component.scss'],
   template: `
-    <form #form="ngForm" (ngSubmit)="onLogin(form.value, form.valid)">
-      <div>
-        <input type="text" name="username" placeholder="Username" required ngModel>
-      </div>
-      <div>
-        <input type="password" name="password" placeholder="Password" required ngModel>
-      </div>
-      <div>
-        <button type="submit">Login</button>
-      </div>
-      <div *ngIf="inputError">
-        Username and password are required
-      </div>
-      <div *ngIf="logInError">
-        Username or Password are incorect
-      </div>
-    </form>
+    <div class="form-container">
+      <form #form="ngForm" (ngSubmit)="onLogin(form.value, form.valid)">
+        <div>
+          <h2>Login</h2>
+          <hr>
+        </div>
+        <div>
+          <input type="text" name="username" placeholder="Username" required ngModel>
+        </div>
+        <div>
+          <input type="password" name="password" placeholder="Password" required ngModel>
+        </div>
+        <div>
+          <button type="submit">Login</button>
+        </div>
+        <div *ngIf="inputError">
+          Username and password are required
+        </div>
+        <div *ngIf="logInError">
+          Username or Password are incorect
+        </div>
+      </form>
+    </div>
   `
 })
 

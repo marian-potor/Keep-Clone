@@ -5,11 +5,16 @@ import { User } from '../models/user.interface';
   selector: 'app-users',
   styleUrls: ['./users.component.scss'],
   template: `
-    <login-form *ngIf="!newUser" (logedInUser)="onAuthorize($event)"></login-form>
-    <register-form *ngIf="newUser" (registeredUser)="onAuthorize($event)"></register-form>
+    <div class="users-component">
+      <div class="credentials-container">
+        <login-form *ngIf="!newUser" (logedInUser)="onAuthorize($event)"></login-form>
+        <register-form *ngIf="newUser" (registeredUser)="onAuthorize($event)"></register-form>
+        <div>
+          <p *ngIf="!newUser">Don't have an acount?<a (click)="toggleUserOptions()"> Register</a></p>
+          <p *ngIf="newUser">Already have an acount?<a (click)="toggleUserOptions()"> Login</a></p>
+        </div>
+      </div>
     <div>
-      <button (click)="toggleUserOptions()">{{newUser?'Log In':'Register'}}</button>
-    </div>
   `
 })
 export class UsersComponent {

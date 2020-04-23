@@ -1,0 +1,56 @@
+.users-component {
+  background-color: silver;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.credentials-container {
+  background-color: white;
+  width: 50%;
+  margin: auto;
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+a {
+  color: red;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.form-container {
+  margin: auto;
+  margin-top: 1rem;
+  h2 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  div {
+    margin-top: 1rem;
+  }
+  div:first-child {
+    margin-bottom: 2rem;
+  }
+  input {
+    box-sizing: border-box;
+    width: 20rem;
+    height: 2rem;
+  }
+  button {
+    width: 20rem;
+    height: 2rem;
+    background-color: rgb(0, 238, 255);
+    transition: background-color 0.3s;
+    border: none;
+    &:hover {
+      background-color: rgb(0, 202, 216);
+    }
+  }
+}

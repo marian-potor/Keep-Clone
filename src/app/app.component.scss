@@ -1,0 +1,15 @@
+div {
+  margin: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+a {
+  &:hover {
+    color: blue;
+    cursor: pointer;
+  }
+}
+p {
+  margin: 0;
+}

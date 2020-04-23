@@ -8,7 +8,13 @@ import { User } from './models/user.interface';
 })
 export class AppComponent {
   currentUser: User;
+  userLoggedIn: boolean = false;
   loadUserData(event: User) {
     this.currentUser = event;
+    this.userLoggedIn = true;
+  }
+  onLogOut() {
+    this.currentUser = Object.assign({});
+    this.userLoggedIn = false;
   }
 }

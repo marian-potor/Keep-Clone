@@ -1,3 +1,6 @@
-<div *ngIf="currentUser">Hello {{currentUser?.firstName}}</div>
-<app-users (user)="loadUserData($event)" *ngIf="!currentUser"></app-users>
-<app-notes *ngIf="currentUser" [user]="currentUser"></app-notes>
+<div *ngIf="currentUser">
+  <p>Hello {{currentUser?.firstName}}</p>
+  <a (click)="onLogOut()">Logout</a>
+</div>
+<app-users *ngIf="!userLoggedIn" (user)="loadUserData($event)"></app-users>
+<app-notes *ngIf="userLoggedIn" [user]="currentUser"></app-notes>
