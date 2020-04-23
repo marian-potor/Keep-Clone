@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.interface';
+import { Credentials } from '../models/userCredentials.interface';
 
 @Injectable()
 
@@ -10,7 +11,7 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  logIn(user: User): Observable<User[]> {
+  logIn(user: Credentials): Observable<User[]> {
     return this.http.get<User[]>(`${this.usersUrl}?username=${user.username}&password=${user.password}`);
   }
 

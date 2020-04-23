@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/models/user.interface';
+import { Credentials } from 'src/app/models/userCredentials.interface';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -41,7 +42,7 @@ export class LoginFormComponent {
 
   constructor(private usersServices: UsersService) {}
   
-  onLogin(user: User, isValid: boolean): void {
+  onLogin(user: Credentials, isValid: boolean): void {
     if (isValid) {
       this.inputError = false;
       this.usersServices.logIn(user)

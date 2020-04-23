@@ -1,11 +1,10 @@
 import { Note } from './note.interface';
+import { Credentials } from './userCredentials.interface';
 
-export interface User {
-  id?: string,
-  username: string,
-  password: string,
-  email?: string,
-  firstName?: string,
-  lastName?: string,
-  noteList?: Note[]
+export interface User extends Credentials {
+  id: string,
+  email: string,
+  firstName: string,
+  lastName: string,
+  noteList: Note[]
 }
