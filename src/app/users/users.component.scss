@@ -65,7 +65,9 @@ a {
   .credentials-container {
     width: 50%;
   }
-  .form-container input,button {
-    width: 20rem;
-  }
+  .form-container {
+    input,button {
+      width: 20rem;
+    }
+  } 
 }
