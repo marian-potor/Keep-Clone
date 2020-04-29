@@ -16,8 +16,23 @@ import { RemoveButtonComponent } from './components/button-container/remove-butt
 import { ButtonContainerComponent } from './components/button-container/button-container.component';
 import { ColorButtonComponent } from './components/button-container/color-button/color-button.component';
 import { ImageButtonComponent } from './components/button-container/image-button/image-button.component';
+import { PrintButtonComponent } from './components/button-container/print-button/print-button.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from '../auth/auth-guard.service';
+import { PrintViewComponent } from './components/print-view/print-view.component';
 
-
+const routes: Routes = [
+  {
+    path: 'notes',
+    // component: NotesComponent,
+    canActivate: [AuthGuardService],
+    children: [
+      {path: '', component: NotesComponent},
+      {path: ':id', component: PrintViewComponent},
+      // {path: '**', component: NotesComponent, pathMatch: 'full'},
+    ]
+  }
+]
 
 @NgModule({
   declarations: [
@@ -30,13 +45,15 @@ import { ImageButtonComponent } from './components/button-container/image-button
     RemoveButtonComponent,
     ButtonContainerComponent,
     ColorButtonComponent,
-    ImageButtonComponent
+    ImageButtonComponent,
+    PrintButtonComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterModule.forChild(routes)
   ],
   exports: [
     NotesComponent

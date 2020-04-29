@@ -6,6 +6,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './users.component';
 import { LoginFormComponent } from './login/login-form.component';
 import { RegisterFormComponent } from './register/register-form.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes =[
+  {
+    path: 'user',
+    children:[
+      {path: 'register', component: RegisterFormComponent},
+      {path: 'login', component: LoginFormComponent},
+      {path: '', redirectTo: 'login', pathMatch: 'full'}
+    ],
+    component: UsersComponent
+  }
+]
 
 @NgModule({
   declarations: [
@@ -16,10 +29,11 @@ import { RegisterFormComponent } from './register/register-form.component';
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forChild(routes)
   ],
   exports: [
-    UsersComponent
+    // UsersComponent
   ],
   providers: []
 })

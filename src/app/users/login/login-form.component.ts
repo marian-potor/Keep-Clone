@@ -37,9 +37,6 @@ export class LoginFormComponent {
   logInError: boolean = false;
   inputError: boolean = false;
 
-  @Output()
-  logedInUser: EventEmitter<User> = new EventEmitter<User>()
-
   constructor(private usersServices: UsersService) {}
   
   onLogin(user: Credentials, isValid: boolean): void {
@@ -49,7 +46,7 @@ export class LoginFormComponent {
       .subscribe(data => {
         if (data.length) {
           this.logInError = false;
-          this.logedInUser.emit(data[0])
+          this.usersServices.setSessionUser(data[0]);
           return;
         }
         this.logInError = true;

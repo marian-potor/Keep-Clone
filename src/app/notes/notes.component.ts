@@ -3,6 +3,7 @@ import { v4 as generateId } from 'uuid';
 import { Note } from '../models/note.interface';
 import { User } from '../models/user.interface';
 import { UsersService } from '../users/users.service';
+import { AppStateService } from '../app-state.service';
 
 @Component({
   selector: 'app-notes',
@@ -11,9 +12,7 @@ import { UsersService } from '../users/users.service';
 })
 export class NotesComponent {
 
-  @Input()
   user: User;
-
   newNoteTrigger: string = 'block';
   editNote: boolean = false;
   currentNote: Note;
@@ -25,11 +24,15 @@ export class NotesComponent {
     color: 'rgb(255, 255, 255)'
   };
 
-  constructor(private notesService: UsersService) {}
+  constructor(
+    private notesService: UsersService,
+    private state: AppStateService
+    ) {}
 
-  // ngOnInit(): void {
-  //   this.getNotes();
-  // }
+  ngOnInit(): void {
+    this.state.getUser()
+    .subscribe(data => this.user = Object.assign({}, data));
+  }
 
    //when clicking on it the new note div is hidden and the note-view is rendered
   startNewNote(): void {
@@ -55,11 +58,6 @@ export class NotesComponent {
     this.editNote = false;
     this.deleteNote(note);
   }
-
-  // getNotes(): void {
-  //   this.notesService.getNotes()
-  //   .subscribe((data: Note[]) => this.user.noteList = data);
-  // }
 
   updateNote(note: Note): void {
     this.user.noteList = this.user.noteList.map((item: Note) => {

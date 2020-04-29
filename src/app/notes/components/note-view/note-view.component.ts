@@ -1,6 +1,7 @@
 import { Component, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Note } from '../../../models/note.interface';
 import { TextareaDim } from '../../../models/textareaDim.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'note-view',
@@ -32,6 +33,7 @@ import { TextareaDim } from '../../../models/textareaDim.interface';
         <reminder-button (click)="showDateImput()"></reminder-button>
         <color-button (color)="onColorChange($event)"></color-button>
         <image-button></image-button>
+        <print-button (click)="showPrintView()"></print-button>
         <remove-button *ngIf="!newNote" (click)="onDelete($event)"></remove-button>
       </button-container>
     </div>
@@ -60,7 +62,7 @@ export class NoteViewComponent implements OnDestroy {
   addEditReminder: boolean = false;
   deleted: boolean = false; //if note is deleted ngOnDestroi does not emit info
 
-  constructor() {
+  constructor(private router: Router) {
     this.title.elementHeight = this.lineHeight;
     this.content.elementHeight = this.lineHeight;
   }
@@ -105,6 +107,10 @@ export class NoteViewComponent implements OnDestroy {
 
   onColorChange(color: string){
     this.detail = Object.assign({}, this.detail, {color});
+  }
+
+  showPrintView(): void {
+    this.router.navigate(['/notes', this.detail.id])
   }
 
   onDelete(event: MouseEvent): void {

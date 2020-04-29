@@ -1,5 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { User } from '../models/user.interface';
+import { AppStateService } from '../app-state.service';
+import { Credentials } from '../models/userCredentials.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -7,8 +10,7 @@ import { User } from '../models/user.interface';
   template: `
     <div class="users-component">
       <div class="credentials-container">
-        <login-form *ngIf="!newUser" (logedInUser)="onAuthorize($event)"></login-form>
-        <register-form *ngIf="newUser" (registeredUser)="onAuthorize($event)"></register-form>
+        <router-outlet></router-outlet>
         <div>
           <p *ngIf="!newUser">Don't have an account?<a (click)="toggleUserOptions()"> Register</a></p>
           <p *ngIf="newUser">Already have an account?<a (click)="toggleUserOptions()"> Login</a></p>
@@ -20,14 +22,16 @@ import { User } from '../models/user.interface';
 export class UsersComponent {
   newUser: boolean = false;
 
-  @Output()
-  user: EventEmitter<User> = new EventEmitter<User>();
-
-  onAuthorize(recurentUser: User) {
-    this.user.emit(recurentUser);
-  }
+  constructor (
+    private router: Router
+    ) {}
 
   toggleUserOptions() {
+    if (this.newUser) {
+      this.router.navigate(['user/register']);
+    }else{
+      this.router.navigate(['user/login']);
+    }
     this.newUser = !this.newUser;
   }
 }

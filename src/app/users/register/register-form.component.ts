@@ -62,9 +62,6 @@ export class RegisterFormComponent implements OnInit {
     this.newUser.id = generateId();
   }
 
-  @Output()
-  registeredUser: EventEmitter<User> = new EventEmitter<User>()
-
   constructor(private usersServices: UsersService) {}
   
   onRegister(user: User, isValid: boolean, emailNotValid?: boolean): void {
@@ -81,7 +78,7 @@ export class RegisterFormComponent implements OnInit {
         }
         this.usersServices.registerUser(this.newUser)
         .subscribe(data => {
-            this.registeredUser.emit(data);
+            this.usersServices.setSessionUser(data);
           });
       })
       return;
