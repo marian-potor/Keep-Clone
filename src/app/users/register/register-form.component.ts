@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.interface';
 import { UsersService } from '../users.service';
 import { v4 as generateId } from 'uuid';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -24,7 +25,8 @@ import { v4 as generateId } from 'uuid';
           <input  #email="ngModel" type="email" name="email" placeholder="Email" required [(ngModel)]="newUser.email" email>
         </div>
         <div>
-          <input type="text" name="username" placeholder="Username" required [(ngModel)]="newUser.username">
+          <input autocomplete="off" type="text" name="username" placeholder="Username" required [(ngModel)]="newUser.username" (input)="userNameInput$.next($event.target.value)" #username="ngModel">
+          <p *ngIf="!validUser && username.dirty">Username is not valid</p>
         </div>
         <div>
           <input type="password" name="password" placeholder="Password" required [(ngModel)]="newUser.password">
@@ -57,12 +59,16 @@ export class RegisterFormComponent implements OnInit {
   userDuplicate: boolean = false;
   inputError: boolean = false;
   invalidEmail: boolean = false;
+  userNameInput$ = new Subject<string>();
+  validUser: boolean = false;
+
+  constructor(private usersServices: UsersService) {}
 
   ngOnInit(): void {
     this.newUser.id = generateId();
+    this.userNameInput$.subscribe(userName => this.checkUserName(userName))
   }
 
-  constructor(private usersServices: UsersService) {}
   
   onRegister(user: User, isValid: boolean, emailNotValid?: boolean): void {
     if (isValid) {
@@ -85,5 +91,10 @@ export class RegisterFormComponent implements OnInit {
       }
     this.invalidEmail = emailNotValid;
     this.inputError = true;
+  }
+
+  checkUserName(input: string): void {
+    this.usersServices.checkUserName(input)
+    .subscribe(data => this.validUser = !!data.length)
   }
 }

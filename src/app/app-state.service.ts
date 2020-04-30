@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { User } from './models/user.interface';
 import { Note } from './models/note.interface';
-import { pluck, filter, find } from 'rxjs/operators';
+import { pluck, filter, find, map } from 'rxjs/operators';
 
 const emptyUser: User =
 {
@@ -33,9 +33,10 @@ export class AppStateService {
     return this.user
   }
 
-  getNotes(): Observable<User> {
+  getNote(id: string): Observable<Note> {
     return this.user.pipe(
-      filter(user => user.id.length > 0)
+      filter(user => user.id.length > 0),
+      map(user => user.noteList.filter(note => note.id === id)[0]),
     );
   }
   

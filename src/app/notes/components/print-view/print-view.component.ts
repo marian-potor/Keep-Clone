@@ -29,11 +29,11 @@ export class PrintViewComponent implements OnInit {
     this.route.params.pipe(
       switchMap(data => {
         this.noteId = data.id; 
-        return this.state.getNotes()})
+        return this.state.getNote(data.id)})
     )
-    .subscribe(user => {
-      this.note = user.noteList.find(note => note.id === this.noteId);
-      if (!this.note) {
+    .subscribe(note => {
+      this.note = note;
+      if (!note) {
         this.closePrintView();
       }
     });
