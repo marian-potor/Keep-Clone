@@ -27,7 +27,9 @@ export class PrintViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.pipe(
-      switchMap(data => {this.noteId = data.id; return this.state.getUser()})
+      switchMap(data => {
+        this.noteId = data.id; 
+        return this.state.getNotes()})
     )
     .subscribe(user => {
       this.note = user.noteList.find(note => note.id === this.noteId);

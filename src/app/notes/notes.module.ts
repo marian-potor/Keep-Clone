@@ -24,12 +24,10 @@ import { PrintViewComponent } from './components/print-view/print-view.component
 const routes: Routes = [
   {
     path: 'notes',
-    // component: NotesComponent,
     canActivate: [AuthGuardService],
     children: [
       {path: '', component: NotesComponent},
       {path: ':id', component: PrintViewComponent},
-      // {path: '**', component: NotesComponent, pathMatch: 'full'},
     ]
   }
 ]

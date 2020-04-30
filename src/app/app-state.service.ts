@@ -33,15 +33,10 @@ export class AppStateService {
     return this.user
   }
 
-  getNote(id: string): Observable<Note[]> {
-    // const notes = this.value.noteList.find(note => note.id === id);
-    // console.log(this.value);
-    // return of(notes);
+  getNotes(): Observable<User> {
     return this.user.pipe(
-      pluck('noteList')
-      // map(note => note)
-      // find(note => note.noteList.id === id)
-    )
+      filter(user => user.id.length > 0)
+    );
   }
   
   removeUser(): void {

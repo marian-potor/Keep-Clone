@@ -33,7 +33,7 @@ import { Router } from '@angular/router';
         <reminder-button (click)="showDateImput()"></reminder-button>
         <color-button (color)="onColorChange($event)"></color-button>
         <image-button></image-button>
-        <print-button (click)="showPrintView()"></print-button>
+        <print-button *ngIf="!newNote" (click)="showPrintView()"></print-button>
         <remove-button *ngIf="!newNote" (click)="onDelete($event)"></remove-button>
       </button-container>
     </div>

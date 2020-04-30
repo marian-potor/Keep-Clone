@@ -1,8 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { User } from '../models/user.interface';
-import { AppStateService } from '../app-state.service';
-import { Credentials } from '../models/userCredentials.interface';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Route } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -19,19 +16,28 @@ import { Router } from '@angular/router';
     <div>
   `
 })
-export class UsersComponent {
-  newUser: boolean = false;
+export class UsersComponent implements OnInit{
+  newUser: boolean = true;
 
   constructor (
-    private router: Router
+    private router: Router,
+    // private route: Route
     ) {}
 
+  ngOnInit(): void {
+    if (this.router.url.includes('login')) {
+      this.newUser = false;
+    }
+  }
+
   toggleUserOptions() {
-    if (this.newUser) {
+    this.newUser = !this.newUser;
+    if (this.router.url.includes('login')) {
       this.router.navigate(['user/register']);
+      this.newUser = true;
     }else{
       this.router.navigate(['user/login']);
+      this.newUser = false;
     }
-    this.newUser = !this.newUser;
   }
 }
