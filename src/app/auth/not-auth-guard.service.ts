@@ -4,7 +4,7 @@ import { AppStateService } from '../app-state.service';
 
 @Injectable({providedIn: 'root'})
 
-export class AuthGuard implements CanActivate {
+export class NotAuthGuard implements CanActivate {
 
   constructor(
     private state: AppStateService,
@@ -12,8 +12,8 @@ export class AuthGuard implements CanActivate {
     ) {}
 
     canActivate(): boolean {
-      if (!this.state.userOnStart()) {
-        this.router.navigate(['login']);
+      if (this.state.userOnStart()) {
+        this.router.navigate(['notes']);
         return false;
       }
       return true;

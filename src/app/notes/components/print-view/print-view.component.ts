@@ -1,45 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AppStateService } from 'src/app/app-state.service';
-import { switchMap } from 'rxjs/operators';
 import { Note } from 'src/app/models/note.interface';
 
 @Component({
   selector: 'template-view',
+  styleUrls: ['./print-view.component.scss'],
   template: `
-    <p>Print view</p>
-    <p>{{this.note?.title}}</p>
-    <p>{{this.note?.content}}</p>
-    <p>{{this.note?.date}}</p>
+    <div class="print-section">
+      <p>Print view</p>
+      <p>{{note?.title}}</p>
+      <p>{{note?.content}}</p>
+      <p>{{note?.date}}</p>
+    </div>
     <button (click)="closePrintView()">Back to notes</button>
+    <button onClick="window.print()">Print</button>
   `
 })
 
 export class PrintViewComponent implements OnInit {
-  noteId: string;
-  note: Note;
-
+  note: Note
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private state: AppStateService
   ){}
 
-  ngOnInit(): void {
-    this.route.params.pipe(
-      switchMap(data => {
-        this.noteId = data.id; 
-        return this.state.getNote(data.id)})
-    )
-    .subscribe(note => {
-      this.note = note;
-      if (!note) {
-        this.closePrintView();
-      }
-    });
+  ngOnInit() {
+    this.note = this.route.snapshot.data.note
   }
 
   closePrintView(): void {
-    this.router.navigate(['notes']);
+    this.router.navigate(['notes/4']);
   }
 }

@@ -7,17 +7,13 @@ import { UsersComponent } from './users.component';
 import { LoginFormComponent } from './login/login-form.component';
 import { RegisterFormComponent } from './register/register-form.component';
 import { RouterModule, Routes } from '@angular/router';
+import { NotAuthGuard } from '../auth/not-auth-guard.service';
+
 
 const routes: Routes =[
-  {
-    path: 'user',
-    children:[
-      {path: 'register', component: RegisterFormComponent},
-      {path: 'login', component: LoginFormComponent},
-      {path: '', redirectTo: 'login', pathMatch: 'full'}
-    ],
-    component: UsersComponent
-  }
+  {path: 'register', canActivate: [NotAuthGuard], component: UsersComponent},
+  {path: 'login', canActivate: [NotAuthGuard], component: UsersComponent},
+  {path: '', redirectTo: 'login', pathMatch: 'full'}
 ]
 
 @NgModule({
@@ -32,9 +28,7 @@ const routes: Routes =[
     HttpClientModule,
     RouterModule.forChild(routes)
   ],
-  exports: [
-    // UsersComponent
-  ],
+  exports: [],
   providers: []
 })
 export class UsersModule { }

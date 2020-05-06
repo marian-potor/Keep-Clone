@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { v4 as generateId } from 'uuid';
 import { Note } from '../models/note.interface';
 import { User } from '../models/user.interface';
@@ -14,8 +14,6 @@ export class NotesComponent {
 
   user: User;
   newNoteTrigger: string = 'block';
-  editNote: boolean = false;
-  currentNote: Note;
   newNote: Note = {    
     id: '',
     title: '',
@@ -25,7 +23,7 @@ export class NotesComponent {
   };
 
   constructor(
-    private notesService: UsersService,
+    private userService: UsersService,
     private state: AppStateService
     ) {}
 
@@ -45,40 +43,11 @@ export class NotesComponent {
   //the click event on this section closes the note-view
   closeNoteWiew(): void {
     this.newNoteTrigger = 'block';
-    this.editNote = false;
-  }
-
-  onEditNote(note: Note): void {
-    this.currentNote = note;
-    this.editNote = true;
-    this.updateNote(note)
-  }
-
-  onDeleteNote(note: Note): void {
-    this.editNote = false;
-    this.deleteNote(note);
-  }
-
-  updateNote(note: Note): void {
-    this.user.noteList = this.user.noteList.map((item: Note) => {
-      if(item.id === note.id) {
-        return item = Object.assign({}, item, note);
-      }
-      return item;
-    });
-    this.notesService.updateUser(this.user)
-    .subscribe((data: User) => console.log(data))
   }
 
   createNote(note: Note): void {
     this.user.noteList.push(note)
-    this.notesService.updateUser(this.user)
-    .subscribe((data: User) => console.log(data));
-  };
-
-  deleteNote(note: Note): void {
-    this.user.noteList = this.user.noteList.filter((item) => item.id !== note.id)
-    this.notesService.updateUser(this.user)
-    .subscribe(data => console.log(data));
+    this.userService.updateUser(this.user)
+    .subscribe((data: User) => this.state.setUser(data));
   };
 }

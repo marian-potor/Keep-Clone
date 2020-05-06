@@ -1,5 +1,7 @@
-<div>
-  <p>Hello {{userFirstName}}</p>
-  <a (click)="onLogOut()">Logout</a>
+<div class="main-container">
+  <div class="header">
+    <p>Hello {{userFirstName}}</p>
+    <a (click)="onLogOut()">Logout</a>
+  </div>
+  <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>

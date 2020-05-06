@@ -1,0 +1,5 @@
+.print-section {
+  @media print {
+    visibility: visible;
+  }
+}

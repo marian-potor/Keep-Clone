@@ -49,7 +49,7 @@ export class NoteComponent {
 
   onEdit(event: MouseEvent): void {
     event.stopPropagation();
-    if (this.addEditReminder === true) {
+    if (this.addEditReminder) {
       this.addEditReminder = false;
       return;
     }
@@ -61,7 +61,7 @@ export class NoteComponent {
     this.delete.emit(this.item);
   }
 
-  onColorChange(color: string){
+  onColorChange(color: string){    
     this.item = Object.assign({}, this.item, {color});
     this.update.emit(this.item);
   }

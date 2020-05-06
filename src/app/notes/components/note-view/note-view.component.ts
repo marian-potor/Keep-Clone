@@ -75,6 +75,7 @@ export class NoteViewComponent implements OnDestroy {
       this.detail.date ||
       !this.newNote
       ) {
+        this.router.navigate(['notes']);
         this.update.emit(this.detail);
     }
   }

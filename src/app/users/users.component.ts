@@ -7,7 +7,8 @@ import { Router, ActivatedRoute, Route } from '@angular/router';
   template: `
     <div class="users-component">
       <div class="credentials-container">
-        <router-outlet></router-outlet>
+        <login-form *ngIf="!newUser"></login-form>
+        <register-form *ngIf="newUser"></register-form>
         <div>
           <p *ngIf="!newUser">Don't have an account?<a (click)="toggleUserOptions()"> Register</a></p>
           <p *ngIf="newUser">Already have an account?<a (click)="toggleUserOptions()"> Login</a></p>
@@ -21,7 +22,6 @@ export class UsersComponent implements OnInit{
 
   constructor (
     private router: Router,
-    // private route: Route
     ) {}
 
   ngOnInit(): void {
@@ -33,10 +33,10 @@ export class UsersComponent implements OnInit{
   toggleUserOptions() {
     this.newUser = !this.newUser;
     if (this.router.url.includes('login')) {
-      this.router.navigate(['user/register']);
+      this.router.navigate(['register']);
       this.newUser = true;
     }else{
-      this.router.navigate(['user/login']);
+      this.router.navigate(['login']);
       this.newUser = false;
     }
   }

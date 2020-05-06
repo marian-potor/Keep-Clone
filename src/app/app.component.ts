@@ -32,6 +32,6 @@ export class AppComponent implements OnInit {
   onLogOut(): void {
     this.state.removeUser();
     localStorage.removeItem('sessionUser');
-    this.router.navigate(['user']);
+    this.router.navigate(['login']);
   }
 }

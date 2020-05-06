@@ -18,23 +18,27 @@ import { ColorButtonComponent } from './components/button-container/color-button
 import { ImageButtonComponent } from './components/button-container/image-button/image-button.component';
 import { PrintButtonComponent } from './components/button-container/print-button/print-button.component';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuardService } from '../auth/auth-guard.service';
+import { AuthGuard } from '../auth/auth-guard.service';
 import { PrintViewComponent } from './components/print-view/print-view.component';
+import { NoteListComponent } from './components/note-list/note-list.component';
+import { PrintViewResolve } from './components/print-view/print-view.resolve';
 
 const routes: Routes = [
   {
     path: 'notes',
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuard],
     children: [
-      {path: '', component: NotesComponent},
-      {path: ':id', component: PrintViewComponent},
-    ]
+      {path: '', component: NoteListComponent},
+      {path: ':id', component: PrintViewComponent, resolve: {note: PrintViewResolve}},
+    ],
+    component: NotesComponent
   }
 ]
 
 @NgModule({
   declarations: [
     NotesComponent,
+    NoteListComponent,
     NoteComponent,
     NoteViewComponent,
     DateViewerComponent,
@@ -56,6 +60,6 @@ const routes: Routes = [
   exports: [
     NotesComponent
   ],
-  providers: [ NotesService ] //imports service at this module level
+  providers: [ PrintViewResolve ]
 })
 export class NotesModule { }

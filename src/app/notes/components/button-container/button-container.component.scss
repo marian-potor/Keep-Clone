@@ -17,6 +17,7 @@
       }
       ~.color-menu {
         visibility: visible;
+        height: auto;
         opacity: 1;
       }
     }
@@ -48,7 +49,7 @@
 .color-menu {
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: visibility 0.5s, opacity 0.5s ease-in;
   position: absolute;
   display: flex;
   justify-content: space-between;
