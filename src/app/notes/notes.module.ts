@@ -16,12 +16,29 @@ import { RemoveButtonComponent } from './components/button-container/remove-butt
 import { ButtonContainerComponent } from './components/button-container/button-container.component';
 import { ColorButtonComponent } from './components/button-container/color-button/color-button.component';
 import { ImageButtonComponent } from './components/button-container/image-button/image-button.component';
+import { PrintButtonComponent } from './components/button-container/print-button/print-button.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../auth/auth-guard.service';
+import { PrintViewComponent } from './components/print-view/print-view.component';
+import { NoteListComponent } from './components/note-list/note-list.component';
+import { PrintViewResolve } from './components/print-view/print-view.resolve';
 
-
+const routes: Routes = [
+  {
+    path: 'notes',
+    canActivate: [AuthGuard],
+    children: [
+      {path: '', component: NoteListComponent},
+      {path: ':id', component: PrintViewComponent, resolve: {note: PrintViewResolve}},
+    ],
+    component: NotesComponent
+  }
+]
 
 @NgModule({
   declarations: [
     NotesComponent,
+    NoteListComponent,
     NoteComponent,
     NoteViewComponent,
     DateViewerComponent,
@@ -30,17 +47,19 @@ import { ImageButtonComponent } from './components/button-container/image-button
     RemoveButtonComponent,
     ButtonContainerComponent,
     ColorButtonComponent,
-    ImageButtonComponent
+    ImageButtonComponent,
+    PrintButtonComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterModule.forChild(routes)
   ],
   exports: [
     NotesComponent
   ],
-  providers: [ NotesService ] //imports service at this module level
+  providers: [ PrintViewResolve ]
 })
 export class NotesModule { }

@@ -9,7 +9,7 @@ export abstract class ButtonTemplate {
   @Output()
   color: EventEmitter<string> = new EventEmitter<string>();
 
-  updateColor(event: any) {
+  updateColor(event: any): void {
     event.stopPropagation();
     this.color.emit(event.target.style.backgroundColor);
   }

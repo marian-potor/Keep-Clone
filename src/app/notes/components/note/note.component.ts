@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Note } from '../../../models/note.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-note',
@@ -20,6 +21,7 @@ import { Note } from '../../../models/note.interface';
         <reminder-button (click)="showDateImput()"></reminder-button>
         <color-button (color)="onColorChange($event)"></color-button>
         <image-button></image-button>
+        <print-button (click)="showPrintView($event)"></print-button>
         <remove-button (click)="onDelete($event)"></remove-button>
       </button-container>
       <date-input *ngIf="addEditReminder" [currentDate]="item.date" (date)="saveTimeDate($event)"></date-input>
@@ -43,9 +45,11 @@ export class NoteComponent {
 
   addEditReminder: boolean = false;
 
+  constructor(private router: Router) {}
+
   onEdit(event: MouseEvent): void {
     event.stopPropagation();
-    if (this.addEditReminder === true) {
+    if (this.addEditReminder) {
       this.addEditReminder = false;
       return;
     }
@@ -57,7 +61,7 @@ export class NoteComponent {
     this.delete.emit(this.item);
   }
 
-  onColorChange(color: string){
+  onColorChange(color: string){    
     this.item = Object.assign({}, this.item, {color});
     this.update.emit(this.item);
   }
@@ -77,5 +81,9 @@ export class NoteComponent {
     event.stopPropagation();
     this.addEditReminder = true;
   }
-  
+
+  showPrintView(event: MouseEvent): void {
+    event.stopPropagation();
+    this.router.navigate(['/notes', this.item.id])
+  }
 }

@@ -1,4 +1,4 @@
-<div (click)="closeNoteWiew()">
+<div (click)="closeNoteWiew()" class="notes-container">
   <div class="new-note-container">
     <div class="add-new-note" [style.display]="newNoteTrigger" (click)="startNewNote()"> 
       Take a note...
@@ -6,16 +6,5 @@
     <note-view *ngIf="newNoteTrigger === 'none'" [detail]="newNote" [newNote]="true" (update)="createNote($event)"></note-view>
   </div>
   <!-- <note-view [detail]="newNote" (update)="createNote($event)"></note-view> -->
-  <div class="note-container">
-    <app-note 
-      *ngFor="let note of user.noteList"
-      [item]="note"
-      (update)="updateNote($event)"
-      (edit)="onEditNote($event)"
-      (delete)="deleteNote($event)">
-    </app-note>
-  </div>
-  <div *ngIf="editNote" class="modal">
-    <note-view [detail]="currentNote" [newNote]="false" (update)="updateNote($event)" (delete)="onDeleteNote($event)"></note-view>
-  </div>
+  <router-outlet></router-outlet>
 </div>

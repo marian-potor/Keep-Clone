@@ -1,0 +1,12 @@
+<div class="note-container">
+  <app-note 
+    *ngFor="let note of user.noteList"
+    [item]="note"
+    (update)="updateNote($event)"
+    (edit)="onEditNote($event)"
+    (delete)="deleteNote($event)">
+  </app-note>
+</div>
+<div *ngIf="editNote" class="modal" (click)="closeNoteWiew($event)">
+  <note-view [detail]="currentNote" [newNote]="false" (update)="updateNote($event)" (delete)="onDeleteNote($event)"></note-view>
+</div>
