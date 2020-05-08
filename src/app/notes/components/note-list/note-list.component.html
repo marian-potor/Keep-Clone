@@ -8,5 +8,10 @@
   </app-note>
 </div>
 <div *ngIf="editNote" class="modal" (click)="closeNoteWiew($event)">
-  <note-view [detail]="currentNote" [newNote]="false" (update)="updateNote($event)" (delete)="onDeleteNote($event)"></note-view>
+  <note-view 
+    [detail]="currentNote" 
+    [newNote]="false" 
+    (update)="updateNote($event)" 
+    (delete)="onDeleteNote($event)">
+  </note-view>
 </div>

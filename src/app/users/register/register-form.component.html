@@ -1,33 +1,74 @@
 <div class="form-container">
-  <form #form="ngForm" autocomplete="off" (ngSubmit)="onRegister(form.value, form.valid, email.errors?.email?true:false)">
+  <form 
+    #form="ngForm" 
+    autocomplete="off" 
+    (ngSubmit)="onRegister(form.valid)"
+  >
     <div>
       <h2>Register</h2>
       <hr>
     </div>
     <div>
-      <input type="text" name="firstName" placeholder="First name" required [(ngModel)]="newUser.firstName">
+      <fa-icon [icon]="firstNameIcon"></fa-icon>
+      <input 
+        type="text" 
+        name="firstName" 
+        placeholder="First name" 
+        required [(ngModel)]="newUser.firstName">
     </div>
     <div>
-      <input type="text" name="lastName" placeholder="Last name" required [(ngModel)]="newUser.lastName">
+      <fa-icon [icon]="lastNameIcon"></fa-icon>
+      <input 
+        type="text" 
+        name="lastName" 
+        placeholder="Last name" 
+        required [(ngModel)]="newUser.lastName">
     </div>
     <div>
-      <input  #email="ngModel" type="email" name="email" placeholder="Email" required [(ngModel)]="newUser.email" email>
+      <fa-icon [icon]="mailIcon"></fa-icon>
+      <input 
+        #email="ngModel" 
+        type="email" 
+        name="email" 
+        placeholder="Email" 
+        required [(ngModel)]="newUser.email" email>
     </div>
     <div>
-      <input type="text" name="username" placeholder="Username" required [(ngModel)]="newUser.username" (input)="userNameInput$.next($event.target.value)" #username="ngModel">
-      <p *ngIf="invalidUser && username.dirty" class="input-error">This username is already in use</p>
+      <fa-icon 
+        *ngIf="!username.dirty" 
+        [icon]="userIcon">
+      </fa-icon>
+      <fa-icon 
+        *ngIf="username.dirty && (!username.valid || invalidUser)" 
+        [icon]="userError" 
+        class="error">
+      </fa-icon>
+      <fa-icon 
+        *ngIf="username.valid && username.dirty && !invalidUser" 
+        [icon]="userSucces" 
+        class="succes">
+      </fa-icon>
+      <input 
+        type="text" 
+        name="username" 
+        placeholder="Username" 
+        minlength="4"
+        required [(ngModel)]="newUser.username" 
+        (input)="userNameInput$.next($event.target.value)" 
+        #username="ngModel">
     </div>
     <div>
-      <input type="password" name="password" placeholder="Password" required [(ngModel)]="newUser.password">
+      <fa-icon [icon]="passwordIcon"></fa-icon>
+      <input 
+        type="password" 
+        name="password" 
+        placeholder="Password" 
+        required [(ngModel)]="newUser.password">
     </div>
     <div>
-      <button type="submit" [disabled]="!form.valid || invalidUser">Register</button>
+      <button type="submit" [disabled]="!form.valid || invalidUser">
+        Register
+      </button>
     </div>
-    <!-- <div *ngIf="inputError">
-      All fields are required
-    </div>
-    <div *ngIf="invalidEmail">
-      Email is not valid
-    </div> -->
   </form>
 </div>

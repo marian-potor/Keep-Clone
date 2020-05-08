@@ -1,7 +1,4 @@
+<app-header *ngIf="userFirstName" [userFirstName]="userFirstName"></app-header>
 <div class="main-container">
-  <div class="header">
-    <p>Hello {{userFirstName}}</p>
-    <a (click)="onLogOut()">Logout</a>
-  </div>
   <router-outlet></router-outlet>
 </div>

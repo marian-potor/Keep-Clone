@@ -1,0 +1,30 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  background-color: rgb(245, 245, 245);
+  margin: 0;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.5px solid rgb(184, 179, 179);
+}
+a {
+  &:hover {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+input {
+  height: 2rem;
+  width: 30%;
+  border: 0.5px solid rgb(184, 179, 179);
+  border-radius: 10px;
+}
+p {
+  font-size: 1.1rem;
+}

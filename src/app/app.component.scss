@@ -1,19 +1,6 @@
-.header {
-  margin: 0 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-}
-a {
-  &:hover {
-    color: blue;
-    cursor: pointer;
-  }
-}
-p {
-  margin: 0;
-}
-
 .main-container {
+  box-sizing: border-box;
+  padding-top: 3rem;
   height: 100%;
+  overflow: auto;
 }

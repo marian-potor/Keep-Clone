@@ -1,6 +1,6 @@
 html, body {
-  margin: 8px;
-  height: calc(100% - 16px);
+  margin: 8px 0 0;
+  height: calc(100% - 8px);
   & > * {
     @media print {
       visibility: hidden;

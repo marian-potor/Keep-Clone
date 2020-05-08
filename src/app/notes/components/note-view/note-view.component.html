@@ -1,0 +1,38 @@
+<div class="note-view" (click)="stopEvent($event)" [style.background-color]="detail.color">
+  <form #form="ngForm" novalidate>
+    <div>
+      <textarea 
+      name="title"
+      [ngModel]="detail?.title"
+      placeholder="Title" 
+      (input)="textChange($event, form.value)"  
+      [style.height.px]="title.elementHeight"></textarea>
+    </div>
+    <div>
+      <textarea 
+      name="content"
+      [ngModel]="detail?.content"
+      placeholder="Take a note..." 
+      (input)="textChange($event, form.value)" 
+      [style.height.px]="content.elementHeight"></textarea>
+    </div>
+    <date-viewer 
+      *ngIf="detail.date" 
+      [date]="detail.date" 
+      (edit)="showDateImput()" 
+      (newDate)="onDateUpdate($event)">
+    </date-viewer>
+    <date-input 
+      *ngIf="addEditReminder" 
+      [currentDate]="detail.date" 
+      (date)="saveTimeDate($event)">
+    </date-input>
+  </form>
+  <button-container>
+    <reminder-button (click)="showDateImput()"></reminder-button>
+    <color-button (color)="onColorChange($event)"></color-button>
+    <image-button></image-button>
+    <print-button *ngIf="!newNote" (click)="showPrintView()"></print-button>
+    <remove-button *ngIf="!newNote" (click)="onDelete($event)"></remove-button>
+  </button-container>
+</div>

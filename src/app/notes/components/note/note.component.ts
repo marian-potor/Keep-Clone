@@ -5,28 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-note',
   styleUrls: ['./note.component.scss'],
-  template: 
-  `
-    <div class="note" (click)="onEdit($event)" [style.background-color]="item.color">
-      <div>
-        <h3>{{item?.title}}</h3>
-      </div>
-      <div>
-        {{item?.content}}
-      </div>
-      <div>
-        <date-viewer *ngIf="item.date" [date]="item.date" (edit)="showDateImput()" (newDate)="onDateUpdate($event)"></date-viewer>
-      </div>
-      <button-container>
-        <reminder-button (click)="showDateImput()"></reminder-button>
-        <color-button (color)="onColorChange($event)"></color-button>
-        <image-button></image-button>
-        <print-button (click)="showPrintView($event)"></print-button>
-        <remove-button (click)="onDelete($event)"></remove-button>
-      </button-container>
-      <date-input *ngIf="addEditReminder" [currentDate]="item.date" (date)="saveTimeDate($event)"></date-input>
-    </div>
-  `
+  templateUrl: './note.component.html'
 })
 
 export class NoteComponent {

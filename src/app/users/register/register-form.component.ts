@@ -1,9 +1,10 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.interface';
 import { UsersService } from '../users.service';
 import { v4 as generateId } from 'uuid';
 import { Subject } from 'rxjs';
-
+import { debounceTime } from 'rxjs/operators';
+import { IconDefinition, faUser, faKey, faEnvelope, faUserTie, faSignature, faUserTimes, faUserCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'register-form',
@@ -25,26 +26,32 @@ export class RegisterFormComponent implements OnInit {
   invalidEmail: boolean = false;
   userNameInput$ = new Subject<string>();
   invalidUser: boolean = false;
+  firstNameIcon: IconDefinition = faUserTie;
+  lastNameIcon: IconDefinition = faSignature;
+  mailIcon: IconDefinition = faEnvelope;
+  userIcon: IconDefinition = faUser;
+  passwordIcon: IconDefinition = faKey;
+  userError: IconDefinition = faUserTimes;
+  userSucces: IconDefinition = faUserCheck;
 
   constructor(private usersServices: UsersService) {}
 
   ngOnInit(): void {
     this.newUser.id = generateId();
-    this.userNameInput$.subscribe(userName => this.checkUserName(userName))
+    this.userNameInput$.pipe(
+      debounceTime(500)
+    )
+    .subscribe(userName => this.checkUserName(userName))
   }
   
-  onRegister(user: User, isValid: boolean, emailNotValid?: boolean): void {
+  onRegister(isValid: boolean): void {
     if (isValid) {
-      this.inputError = false;
-      this.invalidEmail = false;
       this.usersServices.registerUser(this.newUser)
       .subscribe(data => {
           this.usersServices.setSessionUser(data);
         });
       return;
       }
-    this.invalidEmail = emailNotValid;
-    this.inputError = true;
   }
 
   checkUserName(input: string): void {

@@ -3,7 +3,12 @@
     <div class="add-new-note" [style.display]="newNoteTrigger" (click)="startNewNote()"> 
       Take a note...
     </div>
-    <note-view *ngIf="newNoteTrigger === 'none'" [detail]="newNote" [newNote]="true" (update)="createNote($event)"></note-view>
+    <note-view
+      *ngIf="newNoteTrigger === 'none'"
+      [detail]="newNote"
+      [newNote]="true"
+      (update)="createNote($event)">
+    </note-view>
   </div>
   <!-- <note-view [detail]="newNote" (update)="createNote($event)"></note-view> -->
   <router-outlet></router-outlet>

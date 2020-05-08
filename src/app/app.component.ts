@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './models/user.interface';
 import { UsersService } from './users/users.service';
 import { AppStateService } from './app-state.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +13,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private usersServices: UsersService,
-    private state: AppStateService,
-    private router: Router
+    private state: AppStateService
     ) {}
 
   ngOnInit(): void {
@@ -27,11 +25,5 @@ export class AppComponent implements OnInit {
         this.state.setUser(data[0]);
       });
     }
-  }
-
-  onLogOut(): void {
-    this.state.removeUser();
-    localStorage.removeItem('sessionUser');
-    this.router.navigate(['login']);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { faPalette } from '@fortawesome/free-solid-svg-icons';
 import { ButtonTemplate } from '../button-template/button-template';
 

@@ -1,5 +1,43 @@
 .print-section {
+  border: 0.5px solid;
+  padding: 0.5rem 2rem;
+  @media screen {
+    margin: 0 10rem;
+  }
   @media print {
     visibility: visible;
+  }
+  .template {
+    font-size: 1.2rem;
+    font-weight: bold;
+    @media screen {
+      display: none;
+    }
+  }
+  h1 {
+    display: none;
+    @media print {
+      display: block;
+      text-align: center;
+    }
+  }
+  p {
+    @media print {
+      font-size: 1.2rem;
+    }
+  }
+}
+.button-container {
+  margin: 1rem 10rem;
+  display: flex;
+  justify-content: space-between;
+  button {
+    background-color: rgb(0, 225, 255);
+    border: 1px solid rgb(0, 225, 255);
+    border-radius: 6px;
+    padding: 10px 8px;
+    &:hover {
+      background-color: white;
+    }
   }
 }

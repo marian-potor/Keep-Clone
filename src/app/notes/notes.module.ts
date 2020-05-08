@@ -8,7 +8,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NotesComponent } from './notes.component';
 import { NoteComponent } from './components/note/note.component';
 import { NoteViewComponent } from './components/note-view/note-view.component';
-import { NotesService } from './notes.service';
 import { DateViewerComponent } from './components/date-viewer/date-viewer.component';
 import { ReminderButtonComponent } from './components/button-container/reminder-button/reminder-button.component';
 import { DateInputFieldComponent } from './components/date-input-field/date-input-field.component';
@@ -48,7 +47,8 @@ const routes: Routes = [
     ButtonContainerComponent,
     ColorButtonComponent,
     ImageButtonComponent,
-    PrintButtonComponent
+    PrintButtonComponent,
+    PrintViewComponent
   ],
   imports: [
     CommonModule,
