@@ -10,7 +10,6 @@ import { RegisterFormComponent } from './register/register-form.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NotAuthGuard } from '../auth/not-auth-guard.service';
 
-
 const routes: Routes =[
   {path: 'register', canActivate: [NotAuthGuard], component: UsersComponent},
   {path: 'login', canActivate: [NotAuthGuard], component: UsersComponent},

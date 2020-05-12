@@ -24,10 +24,10 @@ import { IconDefinition, faUser, faKey } from '@fortawesome/free-solid-svg-icons
         <div>
           <button type="submit">Login</button>
         </div>
-        <div *ngIf="inputError">
+        <div *ngIf="inputError" class="input-error">
           Username and password are required
         </div>
-        <div *ngIf="logInError">
+        <div *ngIf="logInError" class="input-error">
           Username or Password are incorect
         </div>
       </form>

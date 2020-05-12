@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { User } from './models/user.interface';
 import { Note } from './models/note.interface';
 import { filter, map } from 'rxjs/operators';
@@ -20,6 +20,8 @@ const emptyUser: User =
 export class AppStateService {
   private subject = new BehaviorSubject<User>(emptyUser);
   private user = this.subject.asObservable();
+  private modalParam = new Subject<string>();
+  private param = this.modalParam.asObservable();
 
   get value() {
     return this.subject.getValue();
@@ -48,5 +50,12 @@ export class AppStateService {
     const user: string = localStorage.getItem('sessionUser');
     if (user) return true;
     return false;
+  }
+
+  setParam(route: string): void {
+    this.modalParam.next(route);
+  }
+  getParam(): Observable<string> {
+    return this.param;
   }
 }

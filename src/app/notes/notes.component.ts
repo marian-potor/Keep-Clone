@@ -4,6 +4,7 @@ import { Note } from '../models/note.interface';
 import { User } from '../models/user.interface';
 import { UsersService } from '../users/users.service';
 import { AppStateService } from '../app-state.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notes',
@@ -24,12 +25,19 @@ export class NotesComponent {
 
   constructor(
     private userService: UsersService,
-    private state: AppStateService
+    private state: AppStateService,
+    private router: Router
     ) {}
 
   ngOnInit(): void {
     this.state.getUser()
     .subscribe(data => this.user = Object.assign({}, data));
+    this.state.getParam()
+    .subscribe(data => {
+      if (data === this.router.url){
+        console.log('Modal was closed')
+      }
+    });
   }
 
    //when clicking on it the new note div is hidden and the note-view is rendered
