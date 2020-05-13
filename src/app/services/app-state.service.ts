@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { User } from './models/user.interface';
-import { Note } from './models/note.interface';
+import { User } from '../models/user.interface';
+import { Note } from '../models/note.interface';
 import { filter, map } from 'rxjs/operators';
 
 const emptyUser: User =

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, RouterStateSnapshot, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Note } from 'src/app/models/note.interface';
-import { AppStateService } from 'src/app/app-state.service';
+import { AppStateService } from 'src/app/services/app-state.service';
 import { Observable } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
 

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AppStateService } from '../app-state.service';
+import { AppStateService } from '../services/app-state.service';
 import { Router } from '@angular/router';
 import { IconDefinition, faSearch } from '@fortawesome/free-solid-svg-icons';
 

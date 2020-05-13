@@ -15,8 +15,8 @@
   </div>
   <button-container>
     <reminder-button (click)="showDateImput()"></reminder-button>
-    <color-button (color)="onColorChange($event)"></color-button>
-    <image-button></image-button>
+    <color-button (color)="onColorChange($event)" inactiveButton="true"></color-button>
+    <image-button inactiveButton="true"></image-button>
     <print-button (click)="showPrintView($event)"></print-button>
     <remove-button (click)="onDelete($event)"></remove-button>
   </button-container>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Credentials } from 'src/app/models/userCredentials.interface';
-import { UsersService } from '../users.service';
+import { UsersService } from '../../services/users.service';
 import { IconDefinition, faUser, faKey } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

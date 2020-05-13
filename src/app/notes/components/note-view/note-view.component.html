@@ -30,8 +30,8 @@
   </form>
   <button-container>
     <reminder-button (click)="showDateImput()"></reminder-button>
-    <color-button (color)="onColorChange($event)"></color-button>
-    <image-button></image-button>
+    <color-button (color)="onColorChange($event)" inactiveButton="true"></color-button>
+    <image-button inactiveButton="true"></image-button>
     <print-button *ngIf="!newNote" (click)="showPrintView()"></print-button>
     <remove-button *ngIf="!newNote" (click)="onDelete($event)"></remove-button>
   </button-container>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.interface';
-import { UsersService } from '../users.service';
+import { UsersService } from '../../services/users.service';
 import { v4 as generateId } from 'uuid';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';

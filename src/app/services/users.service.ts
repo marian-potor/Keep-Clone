@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.interface';
 import { Credentials } from '../models/userCredentials.interface';
-import { AppStateService } from '../app-state.service';
+import { AppStateService } from './app-state.service';
 import { Router } from '@angular/router';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 
 export class UsersService {
   usersUrl: string = 'http://localhost:3000/users';

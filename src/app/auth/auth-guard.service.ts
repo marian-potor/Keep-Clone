@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
-import { AppStateService } from '../app-state.service';
+import { AppStateService } from '../services/app-state.service';
 
 @Injectable({providedIn: 'root'})
 

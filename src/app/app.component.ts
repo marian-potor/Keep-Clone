@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from './models/user.interface';
-import { UsersService } from './users/users.service';
-import { AppStateService } from './app-state.service';
+import { UsersService } from './services/users.service';
+import { AppStateService } from './services/app-state.service';
 
 @Component({
   selector: 'app-root',
