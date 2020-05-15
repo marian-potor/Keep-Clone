@@ -7,6 +7,7 @@ import { NotesModule } from './notes/notes.module';
 import { UsersModule } from './users/users.module';
 import { HeaderComponent } from './header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ModalModule } from './modal/modal.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     NotesModule,
     UsersModule,
+    ModalModule,
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule
