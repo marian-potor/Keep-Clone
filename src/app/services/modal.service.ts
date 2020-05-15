@@ -4,11 +4,11 @@ import { distinctUntilChanged } from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class ModalService {
-  private subject = new Subject<any>();
+  private subject = new Subject<string>();
   private content = this.subject.asObservable();
 
-  openModal(msg: string, comp: ComponentFactory<any>): Observable<any> {
-    this.subject.next({msg: msg, comp: comp});
+  openModal(msg: string): Observable<string> {
+    this.subject.next(msg);
     return this.content
   }
 
@@ -17,6 +17,6 @@ export class ModalService {
   }
 
   closeModal() {
-    this.subject.next({msg: null, comp: null});
+    this.subject.next(null);
   }
 }

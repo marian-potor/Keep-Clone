@@ -6,7 +6,7 @@ import { ModalService } from '../services/modal.service';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit, AfterContentInit {
+export class ModalComponent implements OnInit {
   modalContent: string = null;
   compFactory: ComponentFactory<any>
 
@@ -18,30 +18,8 @@ export class ModalComponent implements OnInit, AfterContentInit {
   ngOnInit(): void {
     this.content.getContent()
     .subscribe(data => {
-      console.log(data);
-      this.modalContent = data.msg;
-      this.compFactory = data.comp;
-      this.ngAfterContentInit();
-      const component = this.entry.createComponent(data.comp);
-      console.log(data.comp);
+      this.modalContent = data;
     });
-  }
-
-  ngAfterContentInit(): void {
-    // console.log(this.entry)
-    // this.content.getContent()
-    // .subscribe(data => {
-    //   console.log(data);
-    //   this.modalContent = data.msg;
-    //   this.compFactory = data.comp;
-    //   this.ngAfterContentInit();
-    //   const component = this.entry.createComponent(data.comp);
-    //   console.log(data.comp);
-    // });
-  }
-
-  ngAfterViewInit() {
-    console.log(this.entry);
   }
 
   closeModal(): void {

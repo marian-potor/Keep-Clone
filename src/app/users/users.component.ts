@@ -15,7 +15,7 @@ import { take } from 'rxjs/operators';
           <p *ngIf="!newUser">Don't have an account?<a (click)="toggleUserOptions()"> Register</a></p>
           <p *ngIf="newUser">Already have an account?<a (click)="toggleUserOptions()"> Login</a></p>
         </div>
-        <!--<button (click)="openModal()">Modal</button>-->
+        <button (click)="openModal()">Modal</button>
       </div>
     <div>
   `
@@ -25,7 +25,7 @@ export class UsersComponent implements OnInit{
 
   constructor (
     private router: Router,
-    // private modal: ModalService
+    private modal: ModalService
     ) {}
 
   ngOnInit(): void {
@@ -45,9 +45,9 @@ export class UsersComponent implements OnInit{
     }
   }
 
-  // openModal(): void {
-  //   this.modal.openModal('Modal from auth').pipe(take(1))
-  //   // .subscribe(data => data ? null : console.log('Modal was closed'))
-  //   .subscribe(data => console.log('Modal was closed', data))
-  // }
+  openModal(): void {
+    this.modal.openModal('Modal from auth').pipe(take(1))
+    // .subscribe(data => data ? null : console.log('Modal was closed'))
+    .subscribe(data => console.log('Modal was closed', data))
+  }
 }

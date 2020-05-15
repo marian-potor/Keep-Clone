@@ -10,9 +10,6 @@ import { ImageButtonComponent } from '../notes/components/button-container/image
   ],
   exports: [
     ModalComponent  
-  ],
-  entryComponents: [
-    ImageButtonComponent
   ]
 })
 export class ModalModule { }
