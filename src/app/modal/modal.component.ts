@@ -12,39 +12,32 @@ export class ModalComponent implements OnInit, AfterContentInit {
 
   @ViewChild('entry', {read: ViewContainerRef})
   entry: ViewContainerRef;
+  component: ComponentRef<any>;
 
   constructor(private content: ModalService) { }
 
   ngOnInit(): void {
     this.content.getContent()
     .subscribe(data => {
-      console.log(data);
       this.modalContent = data.msg;
       this.compFactory = data.comp;
-      this.ngAfterContentInit();
-      const component = this.entry.createComponent(data.comp);
       console.log(data.comp);
+      this.component = this.entry.createComponent(this.compFactory);
     });
   }
 
-  ngAfterContentInit(): void {
-    // console.log(this.entry)
+  ngAfterContentInit() {
     // this.content.getContent()
     // .subscribe(data => {
     //   console.log(data);
     //   this.modalContent = data.msg;
     //   this.compFactory = data.comp;
-    //   this.ngAfterContentInit();
-    //   const component = this.entry.createComponent(data.comp);
     //   console.log(data.comp);
     // });
   }
 
-  ngAfterViewInit() {
-    console.log(this.entry);
-  }
-
   closeModal(): void {
+    this.component.destroy();
     this.content.closeModal();
   }
 
