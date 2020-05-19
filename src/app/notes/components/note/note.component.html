@@ -13,7 +13,7 @@
       (newDate)="onDateUpdate($event)">
     </date-viewer>
   </div>
-  <button-container>
+  <button-container *ngIf="forPrimaryUse">
     <reminder-button (click)="showDateImput()"></reminder-button>
     <color-button (color)="onColorChange($event)" inactiveButton="true"></color-button>
     <image-button inactiveButton="true"></image-button>
@@ -25,4 +25,7 @@
     [currentDate]="item.date" 
     (date)="saveTimeDate($event)">
   </date-input>
+  <div *ngIf="!forPrimaryUse" class="editable">
+    <button (click)="close()">Close preview</button>
+  </div>
 </div>

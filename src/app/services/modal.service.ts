@@ -1,14 +1,15 @@
-import { Injectable, ComponentFactory } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { distinctUntilChanged, pluck } from 'rxjs/operators';
+import { pluck } from 'rxjs/operators';
+import { Component } from '@angular/compiler/src/core';
 
 @Injectable({providedIn: 'root'})
 export class ModalService {
   private subject = new Subject<any>();
   private content = this.subject.asObservable();
 
-  openModal(msg: string, comp: ComponentFactory<any>): Observable<string> {
-    this.subject.next({msg: msg, comp: comp});
+  openModal(msg: string, comp: any, props: any): Observable<string> {
+    this.subject.next({msg, comp, props});
     return this.content.pipe(
       pluck('msg')
     )
@@ -19,6 +20,6 @@ export class ModalService {
   }
 
   closeModal() {
-    this.subject.next({msg: null});
+    this.subject.next({});
   }
 }

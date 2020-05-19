@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactory, AfterContentInit, ComponentRef, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactory, ComponentRef, ChangeDetectorRef, ComponentFactoryResolver } from '@angular/core';
 import { ModalService } from '../services/modal.service';
 
 @Component({
@@ -8,7 +8,6 @@ import { ModalService } from '../services/modal.service';
 })
 export class ModalComponent implements OnInit {
   modalContent: string = null;
-  compFactory: ComponentFactory<any>
   component: ComponentRef<any>;
 
   @ViewChild('entry', {read: ViewContainerRef})
@@ -16,16 +15,24 @@ export class ModalComponent implements OnInit {
 
   constructor(
     private content: ModalService,
-    private ChangeDetector: ChangeDetectorRef
+    private ChangeDetector: ChangeDetectorRef,
+    private resolver: ComponentFactoryResolver
     ) { }
 
   ngOnInit(): void {
     this.content.getContent()
     .subscribe(data => {
       this.modalContent = data.msg;
-      this.compFactory = data.comp;
       this.ChangeDetector.detectChanges();
-      this.component = this.entry.createComponent(this.compFactory);
+      if(data.comp) {
+        const compFactory = this.resolver.resolveComponentFactory(data.comp);
+        this.component = this.entry.createComponent(compFactory);
+        this.component.instance.item = data.props;
+        this.component.instance.forPrimaryUse = false;
+      }
+      this.component.instance.close = () => {
+        this.closeModal();
+      }
     });
   }
 

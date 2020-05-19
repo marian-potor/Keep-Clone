@@ -22,8 +22,9 @@ export class RegisterFormComponent implements OnInit {
     lastName: '',
     noteList: []
   }
-  inputError: boolean = false;
-  invalidEmail: boolean = false;
+
+  item: User;
+ 
   userNameInput$ = new Subject<string>();
   invalidUser: boolean = false;
   firstNameIcon: IconDefinition = faUserTie;
@@ -33,11 +34,18 @@ export class RegisterFormComponent implements OnInit {
   passwordIcon: IconDefinition = faKey;
   userError: IconDefinition = faUserTimes;
   userSucces: IconDefinition = faUserCheck;
+  forPrimaryUse: boolean = true;
+
+  public close: () => void;
 
   constructor(private usersServices: UsersService) {}
 
   ngOnInit(): void {
-    this.newUser.id = generateId();
+    if (this.item) {
+      this.newUser = Object.assign({}, this.item)
+    } else {
+      this.newUser.id = generateId();
+    }
     this.userNameInput$.pipe(
       debounceTime(500)
     )
@@ -46,11 +54,11 @@ export class RegisterFormComponent implements OnInit {
   
   onRegister(isValid: boolean): void {
     if (isValid) {
-      this.usersServices.registerUser(this.newUser)
+      (this.forPrimaryUse ? this.usersServices.registerUser(this.newUser) : this.usersServices.updateUser(this.newUser))
       .subscribe(data => {
           this.usersServices.setSessionUser(data);
+          this.forPrimaryUse ? null : this.close();
         });
-      return;
       }
   }
 

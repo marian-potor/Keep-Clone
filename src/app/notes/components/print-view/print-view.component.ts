@@ -1,9 +1,9 @@
-import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Note } from 'src/app/models/note.interface';
 import { ModalService } from 'src/app/services/modal.service';
 import { take } from 'rxjs/operators';
-import { ImageButtonComponent } from '../button-container/image-button/image-button.component';
+import { NoteComponent } from '../note/note.component'
 
 @Component({
   selector: 'template-view',
@@ -18,8 +18,8 @@ import { ImageButtonComponent } from '../button-container/image-button/image-but
     </div>
     <div class="button-container">
       <button (click)="closePrintView()">&laquo;Back to notes</button>
+      <button (click)="openModal()">View original note</button>
       <button onClick="window.print()">Print note</button>
-      <button (click)="openModal()">Modal</button>
     </div>
   `
 })
@@ -29,8 +29,7 @@ export class PrintViewComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private modal: ModalService,
-    private resolver: ComponentFactoryResolver
+    private modalService: ModalService,
   ){}
 
   ngOnInit() {
@@ -42,8 +41,7 @@ export class PrintViewComponent implements OnInit {
   }
 
   openModal(): void {
-    const formFactory = this.resolver.resolveComponentFactory(ImageButtonComponent);
-    this.modal.openModal('Modal from print view', formFactory).pipe(take(1))
+    this.modalService.openModal('Original note', NoteComponent, this.note).pipe(take(1))
     // .subscribe(data => data ? null : console.log('Modal was closed'))
     .subscribe(data => console.log('Modal was closed', data))
   }
