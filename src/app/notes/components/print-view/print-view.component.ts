@@ -3,14 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Note } from 'src/app/models/note.interface';
 import { ModalService } from 'src/app/services/modal.service';
 import { take } from 'rxjs/operators';
-<<<<<<< HEAD
-=======
 import { NoteComponent } from '../note/note.component';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
->>>>>>> modal-with-component
 
 @Component({
   selector: 'template-view',
@@ -37,11 +34,7 @@ export class PrintViewComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-<<<<<<< HEAD
-    private modal: ModalService,
-=======
     private modalService: ModalService,
->>>>>>> modal-with-component
   ){}
 
   ngOnInit() {
@@ -53,11 +46,7 @@ export class PrintViewComponent implements OnInit {
   }
 
   openModal(): void {
-<<<<<<< HEAD
-    this.modal.openModal('Modal from print view').pipe(take(1))
-=======
     this.modalService.openModal('Original note', NoteComponent, this.note).pipe(take(1))
->>>>>>> modal-with-component
     // .subscribe(data => data ? null : console.log('Modal was closed'))
     .subscribe(data => console.log('Modal was closed', data))
   }
