@@ -5,7 +5,7 @@ import { Component } from '@angular/compiler/src/core';
 
 @Injectable({providedIn: 'root'})
 export class ModalService {
-  private subject = new Subject<string>();
+  private subject = new Subject<any>();
   private content = this.subject.asObservable();
 
   openModal(msg: string, comp: any, props: any): Observable<string> {

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalService } from '../services/modal.service';
-import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-users',
@@ -15,7 +13,6 @@ import { take } from 'rxjs/operators';
           <p *ngIf="!newUser">Don't have an account?<a (click)="toggleUserOptions()"> Register</a></p>
           <p *ngIf="newUser">Already have an account?<a (click)="toggleUserOptions()"> Login</a></p>
         </div>
-        <button (click)="openModal()">Modal</button>
       </div>
     <div>
   `
@@ -23,10 +20,7 @@ import { take } from 'rxjs/operators';
 export class UsersComponent implements OnInit{
   newUser: boolean = true;
 
-  constructor (
-    private router: Router,
-    private modal: ModalService
-    ) {}
+  constructor (private router: Router) {}
 
   ngOnInit(): void {
     if (this.router.url.includes('login')) {
@@ -43,11 +37,5 @@ export class UsersComponent implements OnInit{
       this.router.navigate(['login']);
       this.newUser = false;
     }
-  }
-
-  openModal(): void {
-    this.modal.openModal('Modal from auth').pipe(take(1))
-    // .subscribe(data => data ? null : console.log('Modal was closed'))
-    .subscribe(data => console.log('Modal was closed', data))
   }
 }
