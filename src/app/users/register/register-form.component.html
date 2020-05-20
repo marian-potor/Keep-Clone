@@ -5,7 +5,7 @@
     (ngSubmit)="onRegister(form.valid)"
   >
     <div>
-      <h2>Register</h2>
+      <h2 *ngIf="forPrimaryUse">Register</h2>
       <hr>
     </div>
     <div>
@@ -50,6 +50,7 @@
       </fa-icon>
       <input 
         type="text" 
+        [disabled]="!forPrimaryUse"
         name="username" 
         placeholder="Username" 
         minlength="4"
@@ -57,7 +58,7 @@
         (input)="userNameInput$.next($event.target.value)" 
         #username="ngModel">
     </div>
-    <div>
+    <div *ngIf="forPrimaryUse">
       <fa-icon [icon]="passwordIcon"></fa-icon>
       <input 
         type="password" 
@@ -66,9 +67,12 @@
         required [(ngModel)]="newUser.password">
     </div>
     <div>
-      <button type="submit" [disabled]="!form.valid || invalidUser">
-        Register
+      <button type="submit" [disabled]="!form.valid || invalidUser || !form.dirty">
+        {{forPrimaryUse ? 'Register' : 'Update'}}
       </button>
     </div>
   </form>
+</div>
+<div *ngIf="!forPrimaryUse" class="cancel-button">
+  <button (click)="close()">Cancel</button>
 </div>

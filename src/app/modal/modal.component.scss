@@ -5,8 +5,20 @@
   bottom: 0;
   left: 0;
   background-color: rgba(0,0,0,0.4);
+  display: flex;
+  overflow: auto;
   .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;  
+    padding: 2rem 4rem;
     background-color: white;
     margin: auto;
+    p {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
   }
 }

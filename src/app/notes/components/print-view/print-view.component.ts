@@ -3,6 +3,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Note } from 'src/app/models/note.interface';
 import { ModalService } from 'src/app/services/modal.service';
 import { take } from 'rxjs/operators';
+<<<<<<< HEAD
+=======
+import { NoteComponent } from '../note/note.component';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+>>>>>>> modal-with-component
 
 @Component({
   selector: 'template-view',
@@ -17,8 +25,9 @@ import { take } from 'rxjs/operators';
     </div>
     <div class="button-container">
       <button (click)="closePrintView()">&laquo;Back to notes</button>
+      <button (click)="openModal()">View original note</button>
       <button onClick="window.print()">Print note</button>
-      <button (click)="openModal()">Modal</button>
+      <button (click)="generatePdf()">Download note</button>
     </div>
   `
 })
@@ -28,7 +37,11 @@ export class PrintViewComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+<<<<<<< HEAD
     private modal: ModalService,
+=======
+    private modalService: ModalService,
+>>>>>>> modal-with-component
   ){}
 
   ngOnInit() {
@@ -40,8 +53,69 @@ export class PrintViewComponent implements OnInit {
   }
 
   openModal(): void {
+<<<<<<< HEAD
     this.modal.openModal('Modal from print view').pipe(take(1))
+=======
+    this.modalService.openModal('Original note', NoteComponent, this.note).pipe(take(1))
+>>>>>>> modal-with-component
     // .subscribe(data => data ? null : console.log('Modal was closed'))
     .subscribe(data => console.log('Modal was closed', data))
+  }
+
+  generatePdf(){
+    const documentDefinition = { 
+      content: [
+        {
+          margin: [0, 150, 0, 0],
+          table: {
+            widths: [500],
+            body: [
+              [[
+                {
+                text: 'Note',
+                alignment: 'center',
+                fontSize: 20,
+                margin: [0, 10, 0, 20]
+                },
+                {
+                  style: 'column',
+                  columns: [{style: 'key', width: 70, text: 'Title:'}, {style: 'value', width: 400, text: this.note.title}]
+                },
+                {
+                  style: 'column',
+                  columns: [{style: 'key', width: 70, text: 'Content:'}, {style: 'value', width: 400, text: this.note.content}]
+                },
+                {
+                  style: 'column',
+                  columns: [{style: 'key', width: 70, text: 'Reminder:'}, {style: 'value', width: 400, text: this.note.date }]
+                },
+                {
+                  style: 'column',
+                  columns: [{style: 'key', width: 70, text: 'Id:'}, {style: 'value', width: 400, qr: this.note.id }]
+                }
+              ]]
+            ]
+          },
+          alignment: 'center'
+        }
+      ],
+      styles: {
+        column: {
+          margin: [0, 5, 0, 5]
+        },
+        key: {
+          bold: true,
+          alignment: 'right',
+        },
+        value: {
+          alignment: 'left'
+        }
+      },
+      defaultStyle: {
+        columnGap: 20
+      }
+    };
+    // pdfMake.createPdf(documentDefinition).open();
+    pdfMake.createPdf(documentDefinition).download();
   }
 }

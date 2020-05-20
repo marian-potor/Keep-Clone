@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AppStateService } from '../services/app-state.service';
 import { Router } from '@angular/router';
 import { IconDefinition, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,10 @@ export class HeaderComponent {
   prevUrl: string[];
 
   @Input()
-  userFirstName: string
+  userFirstName: string;
+
+  @Output()
+  editUser: EventEmitter<null> = new EventEmitter<null>()
 
   constructor(
     private state: AppStateService,
@@ -24,5 +27,9 @@ export class HeaderComponent {
     this.state.removeUser();
     localStorage.removeItem('sessionUser');
     this.router.navigate(['login']);
+  }
+
+  onEdit(): void {
+    this.editUser.emit();
   }
 }

@@ -22,7 +22,9 @@ export class NoteComponent {
   @Output()
   delete: EventEmitter<Note> = new EventEmitter<Note>();
 
-  addEditReminder: boolean = false;
+  public addEditReminder: boolean = false;
+  public forPrimaryUse: boolean = true;
+  public close: () => void;
 
   constructor(private router: Router) {}
 
@@ -46,8 +48,8 @@ export class NoteComponent {
   }
 
   onDateUpdate(date: Date): void {
-    this.item = Object.assign({}, this.item, {date});
-    this.update.emit(this.item);
+      this.item = Object.assign({}, this.item, {date});
+      this.update.emit(this.item);
   }
 
   saveTimeDate(newDateTime: Date): void{
@@ -58,7 +60,9 @@ export class NoteComponent {
 
   showDateImput(): void {
     event.stopPropagation();
-    this.addEditReminder = true;
+    if (this.forPrimaryUse) {
+      this.addEditReminder = true;
+    }
   }
 
   showPrintView(event: MouseEvent): void {

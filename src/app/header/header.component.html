@@ -1,5 +1,5 @@
 <div class="header">
-  <p>Hello {{userFirstName}}</p>
+  <p>Hello <a (click)="onEdit()">{{userFirstName}}</a></p>
   <div class="search-container">
     <fa-icon [icon]="searchIcon"></fa-icon>
     <input type="text" placeholder="Find note">
