@@ -1,5 +1,7 @@
 .notes-container {
-  height: 95%;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 1.5rem 0 0;
 }
 
 .note-container {
@@ -11,7 +13,7 @@
 
 .new-note-container {
   width: 100%;
-  margin: 1.5rem 0;
+  margin: 0 0 1.5rem 0;
 }
 
 .add-new-note {

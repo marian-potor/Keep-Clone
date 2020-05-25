@@ -120,5 +120,32 @@
       "lastName": "m,mn,",
       "noteList": []
     }
+  ],
+  "features": [
+    {
+      "feature": "Store notes",
+      "free": "5 notes",
+      "premium": "50 notes, 0.1$/extra note"
+    },
+    {
+      "feature": "Search through notes",
+      "free": "X",
+      "premium": "V"
+    },
+    {
+      "feature": "Get email notifications",
+      "free": "V",
+      "premium": "V"
+    },
+    {
+      "feature": "Get SMS notifications",
+      "free": "X",
+      "premium": "50 free notifications/month, 0.1$/extra notification "
+    },
+    {
+      "feature": "Share notes",
+      "free": "X",
+      "premium": "V"
+    }
   ]
 }

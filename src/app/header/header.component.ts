@@ -32,4 +32,8 @@ export class HeaderComponent {
   onEdit(): void {
     this.editUser.emit();
   }
+
+  goToPayPlans() {
+    this.router.navigate(['payment-plans'])
+  }
 }

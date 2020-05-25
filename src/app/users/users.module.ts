@@ -9,12 +9,13 @@ import { LoginFormComponent } from './login/login-form.component';
 import { RegisterFormComponent } from './register/register-form.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NotAuthGuard } from '../auth/not-auth-guard.service';
+import { ErrorPageComponent } from '../error-page/error-page.component';
 
 
 const routes: Routes =[
   {path: 'register', canActivate: [NotAuthGuard], component: UsersComponent},
   {path: 'login', canActivate: [NotAuthGuard], component: UsersComponent},
-  {path: '', redirectTo: 'login', pathMatch: 'full'}
+  {path:'**', component: ErrorPageComponent}
 ]
 
 @NgModule({

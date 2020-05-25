@@ -1,32 +1,124 @@
 {
-  "noteList": [
+  "users": [
     {
-      "id": "8cfe8237-0023-46f6-bf75-1113cc62aac0",
-      "title": "aaasssssssssssss",
-      "content": "aaaaaassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
-      "date": "0002-03-02T14:02",
-      "color": "rgb(232, 234, 237)"
+      "id": "c53658b1-a9a9-437f-ab91-0bb98dcb47b7",
+      "username": "user1",
+      "password": "parola",
+      "email": "user@yahoo.com",
+      "firstName": "John",
+      "lastName": "Doe",
+      "noteList": [
+        {
+          "id": "8cfe8237-0023-46f6-bf75-1113cc62aac0",
+          "title": "aaasssssssssssss",
+          "content": "aaaaaassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
+          "date": "0002-03-02T14:02",
+          "color": "rgb(232, 234, 237)"
+        },
+        {
+          "id": "6aa25aed-f237-4cc8-a75a-39e3af11c53f",
+          "title": "dddss",
+          "content": "sdddjxx",
+          "date": "2022-05-15T14:02",
+          "color": "rgb(253, 207, 232)"
+        }
+      ]
     },
     {
-      "id": "6aa25aed-f237-4cc8-a75a-39e3af11c53f",
-      "title": "dddss",
-      "content": "sdddbq",
-      "date": "0002-06-22T14:02",
-      "color": "rgb(253, 207, 232)"
+      "id": "3019fdb1-5bdf-4a89-9821-ad787de3646a",
+      "username": "user2",
+      "password": "parola",
+      "email": "user2@yahoo.com",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "noteList": [
+        {
+          "id": "393198fd-8c07-49fc-8871-945e5a32943b",
+          "title": "some title",
+          "content": "content",
+          "date": "0003-03-03T14:02",
+          "color": "rgb(167, 255, 235)"
+        }
+      ]
     },
     {
-      "id": "c8f077be-ad31-42b5-a42e-df5b592e2823",
-      "title": "aaaa",
-      "content": "sss",
-      "date": "0001-02-02T02:04",
-      "color": "rgb(255, 244, 117)"
+      "id": "078f107e-50cc-4453-9776-8f6c6ec93c0d",
+      "username": "kkk",
+      "password": "kk",
+      "email": "kkkkkk@ssss",
+      "firstName": "user1",
+      "lastName": "parola",
+      "noteList": [
+        {
+          "id": "419e7c15-eb26-4eef-a210-8baf289bf2b0",
+          "title": "ddd",
+          "content": "",
+          "date": null,
+          "color": "rgb(255, 255, 255)"
+        }
+      ]
     },
     {
-      "id": "0e467d9d-702d-47e9-bae2-4f126ee1c15f",
-      "title": "s",
-      "content": "",
-      "date": "0002-02-02T14:02",
-      "color": "rgb(167, 255, 235)"
+      "id": "a0492e35-4d1e-4ff6-b246-91e65cf551d2",
+      "username": "sss",
+      "password": "sss",
+      "email": "w@ss",
+      "firstName": "w",
+      "lastName": "ww",
+      "noteList": []
+    },
+    {
+      "id": "1c1667d8-4bf2-4b93-86be-78a16d8be101",
+      "username": "user3",
+      "password": "parola",
+      "email": "smdm@mmm",
+      "firstName": "dd",
+      "lastName": "ssm",
+      "noteList": [
+        {
+          "id": "00141c69-1b01-4d5f-bc46-e02294a05370",
+          "title": "sss",
+          "content": "",
+          "date": null,
+          "color": "rgb(255, 255, 255)"
+        }
+      ]
+    },
+    {
+      "id": "a5104bdb-5c58-43ae-93aa-12d42b024a84",
+      "username": "kkdddd",
+      "password": ",kmdndd",
+      "email": "kjcj@kjkj",
+      "firstName": "dkdk",
+      "lastName": "kkjk",
+      "noteList": []
+    },
+    {
+      "id": "6f415b53-aadc-42fe-859a-7ddc54ae7e47",
+      "username": "kjkjkkj",
+      "password": "kjjkjk",
+      "email": "kjkj@kjkj",
+      "firstName": "jdjdjdd",
+      "lastName": "jkjkj",
+      "noteList": []
+    },
+    {
+      "id": "eb280b44-836a-4784-a500-0fdae46ed569",
+      "username": "jkkjkk",
+      "password": "kjkjkj",
+      "email": "kjjkj@kjkj",
+      "firstName": "kdjkj",
+      "lastName": "jkkjks",
+      "noteList": []
+    },
+    {
+      "id": "811b4342-ab38-4efd-bc1e-91eba9f7c923",
+      "username": ",m,m,m",
+      "password": ",m,m,,mmm",
+      "email": "mm@mmm",
+      "firstName": "ssss",
+      "lastName": "m,mn,",
+      "noteList": []
     }
   ]
 }

@@ -1,0 +1,54 @@
+<div class="plans-container">
+  <header class="plans-header">
+    <h4>Pricing plans</h4>
+    <h1>
+      Use basic notes for free,<br>
+      enjoy advanced features with Premium.
+    </h1>
+  </header>
+  <main class="plans-table">
+    <table>
+      <colgroup>
+        <col class="features-col">
+        <col class="plan-col">
+        <col class="plan-col">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>
+            <p class="header-main">Feature</p>
+            <p>&nbsp;</p>
+          </th>
+          <th>
+            <p class="header-main">Free</p>
+            <p>Basic plan</p>
+          </th>
+          <th>
+            <p class="header-main">Advanced features</p>
+            <p>Premium plan</p>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feature of features">
+          <th>
+            <content-processing [content]="feature.feature"></content-processing>
+          </th>
+          <td>
+            <content-processing [content]="feature.free"></content-processing>
+          </td>
+          <td>
+            <content-processing [content]="feature.premium"></content-processing>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <section class="small-screen-content">
+      <article *ngFor="let feature of features">
+        <p>{{feature.feature}}</p>
+        <p>{{feature.free}}</p>
+      </article>
+    </section>
+  </main>
+</div>
+

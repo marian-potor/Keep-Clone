@@ -1,8 +1,13 @@
 <div class="header">
-  <p>Hello <a (click)="onEdit()">{{userFirstName}}</a></p>
+  <div>
+    <span>Hello <a (click)="onEdit()">{{userFirstName}}</a></span>
+    <span><a (click)="goToPayPlans()">User plans</a></span>
+  </div>
   <div class="search-container">
     <fa-icon [icon]="searchIcon"></fa-icon>
     <input type="text" placeholder="Find note">
   </div>
-  <a (click)="onLogOut()">Logout</a>
+  <div>
+    <a (click)="onLogOut()">Logout</a>
+  </div>
 </div>

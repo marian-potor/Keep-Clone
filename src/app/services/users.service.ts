@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.interface';
+import { Feature } from '../models/feature.interface';
 import { Credentials } from '../models/userCredentials.interface';
 import { AppStateService } from './app-state.service';
 import { Router } from '@angular/router';
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 
 export class UsersService {
   usersUrl: string = 'http://localhost:3000/users';
+  featuresUrl: string = 'http://localhost:3000/features';
 
   constructor(
     private http: HttpClient,
@@ -38,5 +40,9 @@ export class UsersService {
     localStorage.setItem('sessionUser', JSON.stringify(minifiedUser));
     this.state.setUser(user);
     this.router.navigate(['notes']);
+  }
+
+  getFeatures() {
+    return this.http.get<Feature[]>(`${this.featuresUrl}`)
   }
 }
