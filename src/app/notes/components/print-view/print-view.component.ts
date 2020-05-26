@@ -21,10 +21,10 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
       <p><span class="template">Id: </span>{{note.id}}</p>
     </div>
     <div class="button-container">
-      <button (click)="closePrintView()">&laquo;Back to notes</button>
-      <button (click)="openModal()">View original note</button>
-      <button onClick="window.print()">Print note</button>
-      <button (click)="generatePdf()">Download note</button>
+      <button (click)="closePrintView()" class="app-button">&laquo;Back to notes</button>
+      <button (click)="openModal()" class="app-button">View original note</button>
+      <button onClick="window.print()" class="app-button">Print note</button>
+      <button (click)="generatePdf()" class="app-button">Download note</button>
     </div>
   `
 })

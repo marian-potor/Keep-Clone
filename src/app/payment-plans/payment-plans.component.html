@@ -1,10 +1,10 @@
 <div class="plans-container">
   <header class="plans-header">
-    <h4>Pricing plans</h4>
-    <h1>
+    <p>Pricing plans</p>
+    <p>
       Use basic notes for free,<br>
       enjoy advanced features with Premium.
-    </h1>
+    </p>
   </header>
   <main class="plans-table">
     <table>
@@ -19,11 +19,11 @@
             <p class="header-main">Feature</p>
             <p>&nbsp;</p>
           </th>
-          <th>
+          <th class="free">
             <p class="header-main">Free</p>
             <p>Basic plan</p>
           </th>
-          <th>
+          <th class="premium">
             <p class="header-main">Advanced features</p>
             <p>Premium plan</p>
           </th>
@@ -42,11 +42,56 @@
           </td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <th>
+            <p class="header-main">Choose a plan</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+          </th>
+          <th class="free">
+            <p class="header-main">Free</p>
+            <p>Basic plan</p>
+            <button class="app-button">Select Plan</button>
+          </th>
+          <th class="premium">
+            <p class="header-main">Advanced features</p>
+            <p>Premium plan</p>
+            <button class="app-button">Select Plan</button>
+          </th>
+        </tr>
+      </tfoot>
     </table>
     <section class="small-screen-content">
-      <article *ngFor="let feature of features">
-        <p>{{feature.feature}}</p>
-        <p>{{feature.free}}</p>
+      <article>
+        <div class="header free">
+          <p>Free</p>
+          <hr>
+          <p>Basic plan</p>
+        </div>
+        <div *ngFor="let feature of features" class="content-line">
+          <content-processing [content]="feature.feature"></content-processing>
+          <hr>
+          <content-processing [content]="feature.free"></content-processing>
+        </div>
+        <div class="footer free">
+          <button class="app-button">Select Plan</button>
+        </div>
+      </article>
+      <article>
+        <div class="header premium">
+          <p>Advanced features</p>
+          <hr>
+          <p>Premium plan</p>
+        </div>
+        <div *ngFor="let feature of features" class="content-line">
+          <content-processing [content]="feature.feature"></content-processing>
+          <hr>
+          <content-processing [content]="feature.premium"></content-processing>
+        </div>
+        <div class="footer premium">
+          <button class="app-button">Select Plan</button>
+        </div>
       </article>
     </section>
   </main>

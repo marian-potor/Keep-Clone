@@ -22,11 +22,11 @@ export class ContentProcessingComponent implements OnInit {
   ngOnInit() {
     if (this.content === "V") {
       this.icon = this.availableIcon;
-      this.color = 'rgb(6, 192, 167)';
+      this.color = 'rgb(249, 49, 89)';
     }
     if (this.content === "X") {
       this.icon = this.notAvailableIcon;
-      this.color = 'rgb(249, 49, 89)';
+      this.color = 'rgb(6, 192, 167)';
     } 
   }
 }

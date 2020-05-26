@@ -133,12 +133,12 @@
       "premium": "V"
     },
     {
-      "feature": "Get email notifications",
+      "feature": "Email notifications",
       "free": "V",
       "premium": "V"
     },
     {
-      "feature": "Get SMS notifications",
+      "feature": "SMS notifications",
       "free": "X",
       "premium": "50 free notifications/month, 0.1$/extra notification "
     },
