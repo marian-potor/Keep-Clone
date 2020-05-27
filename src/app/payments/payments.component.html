@@ -1,0 +1,50 @@
+<main class="details-container">
+  <section class="credit-card">
+    <div class="card-header">
+      Card
+    </div>
+    <div class="card-cip">
+      <img src="assets/images/cip.png" class="cip">
+    </div>
+    <div class="card-number">
+      1234 5678 8765 4321
+    </div>
+    <div class="card-info">
+
+    </div>
+  </section>
+  <section class="details-form">
+    <form #form="ngForm" (ngSubmit)="submit(form.value)">
+      <div>
+        <label for="card-number">Card number</label>
+        <input type="text" id="card-number" name="cardNumber" ngModel>
+      </div>
+      <div>
+        <label for="card-name">Card holder</label>
+        <input type="text" id="card-name" name="cardName" ngModel>
+      </div>
+      <div class="row-inputs">
+        <div class="row-element">
+          <label for="expiration-month">Valid thru</label>
+          <select type="select" id="expiration-month" name="expMonth" ngModel>
+            <option *ngFor="let month of getNumbersArray(12)" [value]="month">{{month}}</option>
+          </select>
+        </div>
+        <div class="row-element">
+          <label for="expiration-year">&nbsp;</label>
+          <select type="select" id="expiration-year" name="expYear" ngModel>
+            <option *ngFor="let year of getNumbersArray(currentYear+5, currentYear)" [value]="year">{{year}}</option>
+          </select>
+        </div>
+        <div class="row-element"></div>
+        <div class="row-element">
+          <label for="CCV">CCV</label>
+          <input type="text" id="CCV" name="CCV" ngModel>
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="full-row">Submit</button>
+      </div>
+    </form>
+  </section>
+</main>

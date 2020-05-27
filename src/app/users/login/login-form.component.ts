@@ -22,7 +22,7 @@ import { IconDefinition, faUser, faKey } from '@fortawesome/free-solid-svg-icons
           <input type="password" name="password" placeholder="Password" required ngModel>
         </div>
         <div>
-          <button type="submit">Login</button>
+          <button type="submit" class="full-row">Login</button>
         </div>
         <div *ngIf="inputError">
           Username and password are required

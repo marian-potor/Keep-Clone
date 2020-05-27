@@ -67,7 +67,7 @@
         required [(ngModel)]="newUser.password">
     </div>
     <div>
-      <button type="submit" [disabled]="!form.valid || invalidUser || !form.dirty">
+      <button type="submit" [disabled]="!form.valid || invalidUser || !form.dirty"  class="full-row">
         {{forPrimaryUse ? 'Register' : 'Update'}}
       </button>
     </div>

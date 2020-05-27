@@ -1,0 +1,81 @@
+@import '../styles/config';
+
+:host {
+  background-color: $free-color;
+  width: 100%;
+  min-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 7rem 0;
+  overflow: auto;
+  .details-container {
+    width: 70%;
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    padding-bottom: 3rem  ;
+    .credit-card {
+      width: 350px;
+      height: 224px;
+      margin-top: -80px;
+      background-color: salmon;
+      border-radius: 15px;
+      div {
+        margin: 0;
+        box-sizing: border-box;
+        &.card-header {
+          height: 33%;
+        }
+        &.card-cip {
+          height: 17%;
+          padding: 0 0 0 39px;
+          background-color: seagreen;
+          img.cip {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            height: 38px;
+          }
+        }
+        &.card-number {
+          height: 17%;
+        }
+        &.card-info {
+          height: 33%;
+        }
+      }
+    }
+    .details-form {
+      width: 320px;
+      margin-top: 2rem;
+      div {
+        width: 100%;
+        margin: 1rem 0;
+        &.row-inputs {
+          display: flex;
+          .row-element {
+            flex: 1 1 0;
+            width: 0;
+          }
+        }
+      }
+      label {
+        display: block;
+        white-space: nowrap;
+        overflow: visible;
+      }
+      input, select {
+        box-sizing: border-box;
+        width: 100%;
+        height: 2rem;
+        padding: 0;
+        outline: none;
+      }
+    }
+  }
+}

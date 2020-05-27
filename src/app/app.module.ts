@@ -12,6 +12,7 @@ import { ModalModule } from './modal/modal.module';
 import { HomePageComponent } from './home/home-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { PaymentPlansModule } from './payment-plans/payment-plans.module';
+import { PaymentsModule } from './payments/payments.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PaymentPlansModule } from './payment-plans/payment-plans.module';
     NotesModule,
     UsersModule,
     ModalModule,
-    PaymentPlansModule
+    PaymentPlansModule,
+    PaymentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
