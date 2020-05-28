@@ -1,45 +1,55 @@
 <main class="details-container">
   <section class="credit-card">
     <div class="card-header">
-      Card
+      <p>CreditCard</p>
     </div>
     <div class="card-cip">
       <img src="assets/images/cip.png" class="cip">
+      <img src="assets/images/contactless.png" class="contactless">
     </div>
     <div class="card-number">
-      1234 5678 8765 4321
+      <p>{{transaction.cardNumber ? transaction.cardNumber : "XXXX XXXX XXXX XXXX"}}</p>
     </div>
-    <div class="card-info">
-
+    <div class="card-date">
+      <p>Valid thru:</p>
+      <p>
+        {{transaction.expMonth ? transaction.expMonth : "--"}}/{{transaction.expYear ? (transaction.expYear - 2000) : "--"}}
+      </p>
+    </div>
+    <div class="card-name">
+      <p>{{transaction.cardName}}</p>
     </div>
   </section>
   <section class="details-form">
-    <form #form="ngForm" (ngSubmit)="submit(form.value)">
+    <form #form="ngForm" (ngSubmit)="submit(form.value)" autocomplete="off">
+      <div>
+        {{transaction.details ? transaction.details : "Amount"}}: {{transaction.amount}}$
+      </div>
       <div>
         <label for="card-number">Card number</label>
-        <input type="text" id="card-number" name="cardNumber" ngModel>
+        <input type="text" id="card-number" name="cardNumber" [ngModel]="transaction.cardNumber" card-number (filteredCardNumber)="setCardNumber($event, cardNumber.name)" #cardNumber>  
       </div>
       <div>
         <label for="card-name">Card holder</label>
-        <input type="text" id="card-name" name="cardName" ngModel>
+        <input type="text" id="card-name" name="cardName" [(ngModel)]="transaction.cardName">
       </div>
       <div class="row-inputs">
-        <div class="row-element">
+        <div class="row-element left">
           <label for="expiration-month">Valid thru</label>
-          <select type="select" id="expiration-month" name="expMonth" ngModel>
+          <select type="select" id="expiration-month" name="expMonth" [(ngModel)]="transaction.expMonth">
             <option *ngFor="let month of getNumbersArray(12)" [value]="month">{{month}}</option>
           </select>
         </div>
-        <div class="row-element">
+        <div class="row-element right">
           <label for="expiration-year">&nbsp;</label>
-          <select type="select" id="expiration-year" name="expYear" ngModel>
+          <select type="select" id="expiration-year" name="expYear" [(ngModel)]="transaction.expYear">
             <option *ngFor="let year of getNumbersArray(currentYear+5, currentYear)" [value]="year">{{year}}</option>
           </select>
         </div>
-        <div class="row-element"></div>
-        <div class="row-element">
+        <div class="row-element left"></div>
+        <div class="row-element right">
           <label for="CCV">CCV</label>
-          <input type="text" id="CCV" name="CCV" ngModel>
+          <input type="text" id="CCV" name="CCV" [ngModel]="transaction.CCV" CVV (filteredCVV)="setCardNumber($event, CVV.name)" #CVV>
         </div>
       </div>
       <div>

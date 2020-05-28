@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Transaction } from '../models/transaction.interface';
 
 @Component({
   selector: 'app-payments',
@@ -6,7 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payments.component.scss']
 })
 export class PaymentsComponent implements OnInit {
+  transaction: Transaction ={
+    details: null,
+    amount: null,
+    cardNumber: null,
+    cardName: null,
+    expMonth: null,
+    expYear: null,
+    CCV: null
+  }
   currentYear: number = (new Date).getFullYear();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -20,7 +31,12 @@ export class PaymentsComponent implements OnInit {
     return numArray;
   }
 
+  setCardNumber(event: string, property: any) {
+    this.transaction[property] = event;
+  }
+
   submit(form) {
+    console.log(this.transaction);
     console.log(form);
     
   }

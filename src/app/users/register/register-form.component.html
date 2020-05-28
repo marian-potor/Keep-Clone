@@ -14,7 +14,8 @@
         type="text" 
         name="firstName" 
         placeholder="First name" 
-        required [(ngModel)]="newUser.firstName">
+        required
+        [(ngModel)]="newUser.firstName">
     </div>
     <div>
       <fa-icon [icon]="lastNameIcon"></fa-icon>
@@ -22,7 +23,8 @@
         type="text" 
         name="lastName" 
         placeholder="Last name" 
-        required [(ngModel)]="newUser.lastName">
+        required
+        [(ngModel)]="newUser.lastName">
     </div>
     <div>
       <fa-icon [icon]="mailIcon"></fa-icon>
@@ -31,7 +33,8 @@
         type="email" 
         name="email" 
         placeholder="Email" 
-        required [(ngModel)]="newUser.email" email>
+        required
+        [(ngModel)]="newUser.email" email>
     </div>
     <div>
       <fa-icon 
@@ -54,7 +57,8 @@
         name="username" 
         placeholder="Username" 
         minlength="4"
-        required [(ngModel)]="newUser.username" 
+        required
+        [(ngModel)]="newUser.username" 
         (input)="userNameInput$.next($event.target.value)" 
         #username="ngModel">
     </div>
@@ -64,7 +68,8 @@
         type="password" 
         name="password" 
         placeholder="Password" 
-        required [(ngModel)]="newUser.password">
+        required
+        [(ngModel)]="newUser.password">
     </div>
     <div>
       <button type="submit" [disabled]="!form.valid || invalidUser || !form.dirty"  class="full-row">
