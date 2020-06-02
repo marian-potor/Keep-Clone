@@ -17,6 +17,7 @@ export class PaymentsComponent implements OnInit {
     CCV: null
   }
   currentYear: number = (new Date).getFullYear();
+  rotatedCard: boolean = false;
 
   constructor() { }
 
@@ -31,13 +32,21 @@ export class PaymentsComponent implements OnInit {
     return numArray;
   }
 
-  setCardNumber(event: string, property: any) {
-    this.transaction[property] = event;
+  setCardDetail(event: any) {
+    this.transaction[event.name] = event.value
+  }
+
+  rotateCard(event: HTMLInputElement): void {
+    if (event.type === "focus") {
+      this.rotatedCard = true;
+      return;
+    }
+    this.rotatedCard = false;
   }
 
   submit(form) {
-    console.log(this.transaction);
-    console.log(form);
+    // console.log(this.transaction);
+    console.log(form.form.controls);
     
   }
 
