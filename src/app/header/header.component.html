@@ -1,13 +1,16 @@
 <div class="header">
   <div>
-    <span>Hello <a (click)="onEdit()">{{userFirstName}}</a></span>
-    <span><a (click)="goToPayPlans()">User plans</a></span>
+    <span><a (click)="goToPayPlans()">Pricing</a></span>
   </div>
-  <div class="search-container">
+  <div  *ngIf="userFirstName" class="search-container">
     <fa-icon [icon]="searchIcon"></fa-icon>
     <input type="text" placeholder="Find note">
   </div>
-  <div>
+  <div *ngIf="userFirstName">
+    <span>Hello <a (click)="onEdit()">{{userFirstName}}</a></span>
     <a (click)="onLogOut()">Logout</a>
+  </div>
+  <div *ngIf="!userFirstName">
+    <a (click)="onLogIn()">Login</a>
   </div>
 </div>

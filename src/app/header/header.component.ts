@@ -29,6 +29,10 @@ export class HeaderComponent {
     this.router.navigate(['login']);
   }
 
+  onLogIn(): void {
+    this.router.navigate(['login'])
+  }
+
   onEdit(): void {
     this.editUser.emit();
   }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PaymentsComponent } from './payments.component';
 import { FormsModule } from '@angular/forms';
 import { CardDetailDirective } from './card-detail.directive';
+import { PaymentsResolve } from './payments.resolve';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { CardDetailDirective } from './card-detail.directive';
   imports: [
     CommonModule,
     FormsModule
-  ]
+  ],
+  providers: [ PaymentsResolve ]
 })
 export class PaymentsModule { }
