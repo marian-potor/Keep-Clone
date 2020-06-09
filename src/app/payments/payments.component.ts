@@ -56,8 +56,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
 
   submit(form) {
     console.log(this.transaction);
-    console.log(form.form.controls);
-    
+    console.log(form.form.controls)
   }
 
 }

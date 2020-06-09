@@ -11,8 +11,8 @@ import { IconDefinition, faTimes, faCheck } from '@fortawesome/free-solid-svg-ic
   `
 })
 export class ContentProcessingComponent implements OnInit {
-  availableIcon: IconDefinition = faTimes;
-  notAvailableIcon: IconDefinition = faCheck;
+  availableIcon: IconDefinition = faCheck;
+  notAvailableIcon: IconDefinition = faTimes;
   icon: IconDefinition;
   color: string;
 
@@ -22,11 +22,11 @@ export class ContentProcessingComponent implements OnInit {
   ngOnInit() {
     if (this.content === "V") {
       this.icon = this.availableIcon;
-      this.color = 'rgb(249, 49, 89)';
+      this.color = 'rgb(6, 192, 167)';
     }
     if (this.content === "X") {
       this.icon = this.notAvailableIcon;
-      this.color = 'rgb(6, 192, 167)';
+      this.color = 'rgb(249, 49, 89)';
     } 
   }
 }

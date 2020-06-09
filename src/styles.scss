@@ -2,8 +2,8 @@ html {
   height: 100%;
 }
 body {
-  margin: 0;
-  height: 100%;
+  margin: 3rem 0 0 0;
+  height: calc(100% - 3rem);
   & > * {
     @media print {
       visibility: hidden;

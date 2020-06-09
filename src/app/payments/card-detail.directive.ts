@@ -1,5 +1,5 @@
-import { Directive, HostListener, Output, EventEmitter } from '@angular/core';
-import { Validator, AbstractControl, NG_VALIDATORS, FormControl } from '@angular/forms';
+import { Directive, HostListener, Output, EventEmitter, Input } from '@angular/core';
+import { Validator, AbstractControl, NG_VALIDATORS, FormControl, ControlContainer } from '@angular/forms';
 
 @Directive({
   selector: '[card-details]',
@@ -9,11 +9,14 @@ export class CardDetailDirective implements Validator{
   filtered: string;
   requiredLength: number;
 
+  constructor(private formControl: ControlContainer) {}
+
   @Output()
   filteredInput: EventEmitter<{value: string, name: string}> = new EventEmitter<{value: string, name: string}>();
 
   @HostListener('input', ['$event'])
   onKeyDown(event: KeyboardEvent) {
+    // console.log(this.control.control.get(this.name))
     const input = event.target as HTMLInputElement;
     this.filtered = input.value.replace(/\D/g, '');
     if (input.name === 'cardNumber') {
@@ -25,7 +28,7 @@ export class CardDetailDirective implements Validator{
       for (let i:number = 0; i < this.filtered.length; i += 4) {
         numberGroups.push(this.filtered.substring(i, i+4));
       }
-      this.filtered = numberGroups.join(' ');
+      this.filtered = numberGroups.join('-');
       this.requiredLength = 19;
     }
     if (input.name === 'CCV') {
@@ -34,19 +37,15 @@ export class CardDetailDirective implements Validator{
         this.filtered = this.filtered.substring(0, this.requiredLength);
       }
     }
-    input.value = this.filtered;
+    this.formControl.control.get(input.name).setValue(this.filtered);
     this.filteredInput.emit({value: this.filtered, name: input.name});
-    // this.validate();
+
   }
 
-  validate(control: AbstractControl): {[key: string]: boolean} | null {
-    // control.setValue(this.filtered)
+  validate(): {[key: string]: boolean} | null {
     if (this.filtered && this.filtered.length === this.requiredLength ) {
-      console.log(control.value, this.filtered, this.requiredLength);
       return null;
-    }
-    console.log('no');
-    
+    }   
     return {validLength: false};
   }
 }

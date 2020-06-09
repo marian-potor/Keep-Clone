@@ -1,16 +1,29 @@
-<div class="header">
-  <div>
-    <span><a (click)="goToPayPlans()">Pricing</a></span>
+<div class="header" (window:resize)="resize()">
+  <div class="nav-container">
+    <div class="menu-button" [class.removed]="!dropdownMenu" (click)="toggleDropdown()">
+      <fa-icon [icon]="menu" size="lg"></fa-icon>
+    </div>
+    <div class="nav" [class.dropdown]="dropdownMenu" [class.visible]="displayDropdown">
+      <div (click)="goToPayPlans()" class="nav-link">Pricing</div>
+      <div (click)="goToNotes()" class="nav-link">Notes</div>
+      <div (click)="goToNotes()" class="nav-link">Notes2</div>
+    </div>
   </div>
-  <div  *ngIf="userFirstName" class="search-container">
+  <div *ngIf="userFirstName" class="search-container">
     <fa-icon [icon]="searchIcon"></fa-icon>
     <input type="text" placeholder="Find note">
   </div>
-  <div *ngIf="userFirstName">
-    <span>Hello <a (click)="onEdit()">{{userFirstName}}</a></span>
-    <a (click)="onLogOut()">Logout</a>
-  </div>
-  <div *ngIf="!userFirstName">
-    <a (click)="onLogIn()">Login</a>
+  <div class="user-container">
+    <div *ngIf="userFirstName" class="user-nav">
+      <!-- <a (click)="onLogOut()">Sign out</a> -->
+      <div class="user" (click)="onEdit()">
+        {{userFirstName.substring(0,1)}}
+      </div>
+      <fa-icon [icon]="signOutIcon" (click)="onLogOut()" size="lg"></fa-icon>
+    </div>
+    <div *ngIf="!userFirstName" class="user-nav">
+      <fa-icon [icon]="signInIcon" (click)="onLogIn()" size="lg"></fa-icon>
+      <!-- <a (click)="onLogIn()">Login</a> -->
+    </div>
   </div>
 </div>

@@ -1,3 +1,7 @@
+@import '../styles/config';
+
+$border: 0.5px solid rgb(184, 179, 179);
+
 .header {
   position: fixed;
   top: 0;
@@ -7,17 +11,84 @@
   z-index: 1;
   background-color: rgb(245, 245, 245);
   margin: 0;
+  box-sizing: border-box;
   padding: 0 1rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-bottom: 0.5px solid rgb(184, 179, 179);
+  border-bottom: $border;
+  .nav-container, .search-container, .user-container {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
 }
 a {
   &:hover {
-    color: blue;
+    color: $free-color;
     cursor: pointer;
     text-decoration: underline;
+  }
+}
+.user {
+  background-color: $free-color;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: $light-text-color;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+}
+.nav-container {
+  align-self: stretch;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  .menu-button {
+    align-self: center;
+    padding: 0.3rem 0.5rem;
+    border: $border;
+    border-width: 1px;
+    border-radius: 5px;
+    &:hover {
+      background-color: $free-color;
+      border-color: $free-color;
+      cursor: pointer;
+    }
+  }
+  .nav {
+    visibility: visible;
+    display: flex;
+    align-items: stretch;
+    .nav-link {
+      padding-right: 1rem;
+    }
+  }
+  .nav.dropdown {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 3rem;
+    left: -1rem;
+    width: 12rem;
+    background-color: rgb(245, 245, 245);
+    border-right: $border;
+    border-bottom: $border;
+    .nav-link {
+      height: 2rem;
+      padding-right: 0rem;
+      padding-left: 1rem;
+    }
+  }
+  .nav.dropdown.visible {
+    visibility: visible;
   }
 }
 .search-container {
@@ -43,6 +114,38 @@ a {
     outline: 0;
   }
 }
+.user-container {
+  display: flex;
+  flex-direction: row-reverse;
+  .user-nav {
+    display: flex;
+    align-items: center;
+    :last-child {
+      margin-left: 10px;
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+.nav-link {
+  display: flex;
+  align-items: center;
+  &:hover {
+    color: $free-color;
+    cursor: pointer;
+  }
+}
 p {
   font-size: 1.1rem;
+}
+.removed {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-container, .user-container {
+    max-width: 25%;
+  }  
 }

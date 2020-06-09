@@ -39,7 +39,7 @@
         type="text"
         id="card-number"
         name="cardNumber"
-        [ngModel]="transaction.cardNumber"
+        ngModel
         card-details
         (filteredInput)="setCardDetail($event)"
         required>
@@ -71,7 +71,8 @@
           type="select"
           id="expiration-year"
           name="expYear"
-          [(ngModel)]="transaction.expYear">
+          [(ngModel)]="transaction.expYear"
+          required>
             <option *ngFor="let year of getNumbersArray(currentYear+5, currentYear)" [value]="year">{{year}}</option>
           </select>
         </div>
@@ -82,7 +83,7 @@
           type="text"
           id="CCV"
           name="CCV"
-          [ngModel]="transaction.CCV"
+          ngModel
           card-details
           (filteredInput)="setCardDetail($event)"
           required
@@ -91,7 +92,7 @@
         </div>
       </div>
       <div>
-        <button type="submit" class="full-row">Submit</button>
+        <button type="submit" class="full-row" [disabled]="!form.valid">Submit</button>
       </div>
     </form>
   </section>
