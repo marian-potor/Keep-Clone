@@ -70,7 +70,7 @@ export class HeaderComponent implements AfterViewInit{
     } 
     this.dropdownMenu = false;
     this.displayDropdown = false;
-    // console.log(container.clientWidth, linksWidth);
+    console.log(container.clientWidth, linksWidth);
   }
 
   toggleDropdown(): void {
